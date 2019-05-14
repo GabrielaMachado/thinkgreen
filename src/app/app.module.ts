@@ -18,6 +18,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { AuthService } from './services/auth.service';
+import { GestionProductosComponent } from './components/gestion-productos/gestion-productos.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AuthService } from './services/auth.service';
     RegisterComponent,
     Page404Component,
     ListadoProductosComponent,
+    GestionProductosComponent,
   ],
   imports: [
     BrowserModule,

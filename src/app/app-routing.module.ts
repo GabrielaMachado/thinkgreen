@@ -10,6 +10,7 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 //import { ListaProductosComponent } from "./components/admin/lista-productos/lista-productos.component";
 import { LoginComponent } from "./components/users/login/login.component";
 import { RegisterComponent } from "./components/users/register/register.component";
+import { GestionProductosComponent } from "./components/gestion-productos/gestion-productos.component";
 
 const routes: Routes = [
   { path: '',
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: "Register", component: RegisterComponent },
   { path: "Page404", component: Page404Component },
   { path: 'admin', component: ListadoProductosComponent},
-  { path: '**', component: Page404Component }
+  { path: '**', component: Page404Component },
+  { path: 'GestionProductos', component: GestionProductosComponent}
 ];
 
 @NgModule({
