@@ -24,7 +24,7 @@ export class AuthService {
   async login(email: string, password: string) {
     try {
       await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['admin']);
+      this.router.navigate(['DetalleProducto']);
     } catch (e) {
       alert('Error!' + e.message);
     }
@@ -33,7 +33,7 @@ export class AuthService {
   async logout() {
     await this.afAuth.auth.signOut();
     localStorage.removeItem('user');
-    this.router.navigate(['/']);
+    this.router.navigate(['DetalleProducto']);
   }
 
   get isLoggedIn(): boolean {
@@ -46,7 +46,7 @@ export class AuthService {
       await this.afAuth.auth.signInWithPopup(
         new firebase.auth.GoogleAuthProvider()
       );
-      this.router.navigate(['admin']);
+      this.router.navigate(['DetalleProducto']);
     } catch (e) {
       alert('Error!' + e.message);
     }

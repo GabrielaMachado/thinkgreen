@@ -11,8 +11,8 @@
             <label for="exampleInputPassword1">Contraseña</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" #userPassword required>
           </div>
-            <button (click)="authService.login(userEmail.value, userPassword.value)" type="submit" class="btn btn-block btn-warning">Ingresar</button>
-            <button (click)="authService.googleLogin()" class="btn btn-block btn-success">Login con Google</button>
+            <button (click)="authService.login(userEmail.value, userPassword.value)"  type="submit" class="btn btn-block btn-warning">Ingresar</button>
+            <button (click)="authService.googleLogin()"  class="btn btn-block btn-success">Login con Google</button>
         </form>
       </div>
     </div>

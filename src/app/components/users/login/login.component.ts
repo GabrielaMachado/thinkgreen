@@ -7,9 +7,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
+  
   constructor(private authService: AuthService) {
-    console.log(this.authService.googleLogin.name);
   }
+
+
   ngOnInit() {
   }
 }
