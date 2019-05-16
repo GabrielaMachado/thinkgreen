@@ -10,7 +10,7 @@
 
 .chat-window{
     padding: 10px;
-    width: 300px;
+    width: 500px;
     height: 400px;
     overflow: hidden;
     border: 1px solid #4080FF;
@@ -20,7 +20,7 @@
 .app-mensajes{
     border: 1px coral;
     overflow-y: scroll;
-    height: 270px;
+    height: 300px;
     padding: 5px;
 }
 
