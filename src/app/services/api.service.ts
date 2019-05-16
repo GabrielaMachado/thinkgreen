@@ -10,22 +10,41 @@ import { from } from 'rxjs';
 })
 export class ApiService {
 
+  private productsCollection: AngularFirestoreCollection<ProductosInterface>
+  private productos: Observable<ProductosInterface[]>
+
   constructor(private afs: AngularFirestore) {
     this.productsCollection = afs.collection<ProductosInterface>('productos');
-    this.productos = this.productsCollection.valueChanges()
-   }
+    //this.productos = this.productsCollection.valueChanges()
+    this.productos = this.productsCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as ProductosInterface;
+        const id = a.payload.doc.id;
+        return {id, ...data};
+      }))
+    );
+  }
 
-   private productsCollection: AngularFirestoreCollection<ProductosInterface>
-   private productos: Observable<ProductosInterface[]>
-
-   getProductos(){
-     return this.productos = this.productsCollection.snapshotChanges().pipe(map
-      (changes=>{
-        return changes.map(action=>{
+  getProductos() {
+    return this.productos = this.productsCollection.snapshotChanges().pipe(map
+      (changes => {
+        return changes.map(action => {
           const data = action.payload.doc.data() as ProductosInterface;
           data.id = action.payload.doc.id;
           return data;
         })
       }))
-   }
+  }
+
+  addProductos(producto : ProductosInterface) {
+    console.log('New producto');
+    this.productsCollection.add(producto);
+  }
+
+  delateProductos() {
+    console.log('Delate producto');
+  }
+  updateProductos() {
+    console.log('Update producto');
+  }
 }

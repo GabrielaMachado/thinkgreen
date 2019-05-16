@@ -1,26 +1,29 @@
 <div class="container">
-  <form  #form="ngForm" (submit)="CrearProducto(form)">
+  <form (ngSubmit)="CrearProducto(formNew)" #formNew="ngForm">
     <div class="row">
       <div class="col-md-5">
         <div class="form-group">
           <label>Product name</label>
-          <input type="text" class="form-control" name="producto" 
-          #producto="ngModel" [(ngModel)]="api.formData.producto" placeholder="Example: bolsa de yuca">
+          <input type="text" class="form-control"
+           [(ngModel)]="producto.producto" [ngModelOptions]="{standalone:
+            true}" placeholder="Example: bolsa de yuca">
         </div>
         <div class="form-group">
           <label>Brand</label>
-          <input type="text" class="form-control" name="imagen_url"
-          #imagen_url="ngModel" [(ngModel)]="api.formData.imagen_url" placeholder="Example: adid">
+          <input type="text" class="form-control"
+          [(ngModel)]="producto.imagen_url"  [ngModelOptions]="{standalone:
+            true}" placeholder="Example: adid">
         </div>
         <div class="form-group">
           <label>Price</label>
-          <input type="text" class="form-control" name="precio"
-          #precio="ngModel" [(ngModel)]="api.formData.precio" placeholder="$$$$$$">
+          <input type="text" class="form-control"
+           [(ngModel)]="producto.precio" [ngModelOptions]="{standalone:
+            true}" placeholder="$$$$$$">
         </div>
         <div class="col-md-5">
 
         </div>
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Agregar Produco</button>
+        <button type="submit" class="btn btn-primary">Agregar Produco</button>
       </div>
     </div>
   </form>

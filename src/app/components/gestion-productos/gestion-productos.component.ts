@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { ApiService } from './../../services/api.service';
+import { ProductosInterface } from './../../models/productos'
 
 
 @Component({
@@ -11,25 +11,24 @@ import { ApiService } from './../../services/api.service';
 })
 export class GestionProductosComponent implements OnInit {
 
-  constructor(private api: ApiService, private afs: AngularFirestore) { }
+  producto: ProductosInterface = {
+    producto: '',
+    precio:0,
+    imagen_url:''
+  };
+
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
-  //this.resetForm()
   }
 
-  /*resetForm(form?: NgForm) {
-    if (form != null) {
-      form.resetForm()
-      this.api.formData = {
-        producto: '',
-        precio: null
-      }
-    }
-  }*/
+ 
 
-  CrearProducto(form: NgForm){
-    let data = form.value
-    this.afs.collection('productos').add(data)
+  CrearProducto(formNew: NgForm){
+    //let data = form.value
+    console.log(formNew);
+    this.api.addProductos(this.producto);
+    //this.afs.collection('productos').add(data)
     alert('Se creo correctamente')
   }
 
