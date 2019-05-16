@@ -14,7 +14,10 @@ export class GestionProductosComponent implements OnInit {
   producto: ProductosInterface = {
     producto: '',
     precio:0,
-    imagen_url:''
+    imagen_url:'',
+    referencia:0,
+    marca:'',
+    descripcion:''
   };
 
   constructor(private api: ApiService) { }

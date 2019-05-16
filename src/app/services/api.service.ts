@@ -26,14 +26,7 @@ export class ApiService {
   }
 
   getProductos() {
-    return this.productos = this.productsCollection.snapshotChanges().pipe(map
-      (changes => {
-        return changes.map(action => {
-          const data = action.payload.doc.data() as ProductosInterface;
-          data.id = action.payload.doc.id;
-          return data;
-        })
-      }))
+    return this.productos;
   }
 
   addProductos(producto : ProductosInterface) {
