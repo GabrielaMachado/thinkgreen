@@ -7,4 +7,6 @@ export class Cliente extends Usuario{
     pais: string;
     ciudad: string;
     tipo: boolean;
+
+    
 }

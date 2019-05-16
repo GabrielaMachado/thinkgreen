@@ -1,4 +1,5 @@
 import { Solicitud } from './Solicitud';
 
-export class SolicitudAyuda extends Solicitud{
+export class SolicitudAyuda extends Solicitud
+{
 }   
