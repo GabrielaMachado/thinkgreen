@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-detalle-producto',
@@ -8,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class DetalleProductoComponent implements OnInit {
 
-  constructor(private api: ApiService) { }
+  constructor(private authservicio : AuthService , private api: ApiService) { }
 
   public productos = []
   public producto =  ''

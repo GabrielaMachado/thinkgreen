@@ -26,8 +26,8 @@ const routes: Routes = [
   { path: "Register", component: RegisterComponent },
   { path: "Page404", component: Page404Component },
   { path: 'admin', component: ListadoProductosComponent},
-  { path: '**', component: Page404Component },
-  { path: 'GestionProductos', component: GestionProductosComponent}
+  { path: 'DetalleProducto/GestionProductos', component: GestionProductosComponent},
+  { path: '**', component: Page404Component }
 ];
 
 @NgModule({
