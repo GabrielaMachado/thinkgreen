@@ -11,13 +11,15 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { LoginComponent } from "./components/users/login/login.component";
 import { RegisterComponent } from "./components/users/register/register.component";
 import { GestionProductosComponent } from "./components/gestion-productos/gestion-productos.component";
+import { AsesoriasComponent } from "./components/asesorias/asesorias.component";
+import { BolsitaComponent } from "./components/bolsita/bolsita.component";
 
 const routes: Routes = [
   { path: '',
-    component: HomeComponent,
+    component: DetalleProductoComponent,
     pathMatch: 'full' },
   { path: "Logo", component: LogoComponent },
-  { path: "Home", component: HomeComponent },
+  { path: "Home", component: DetalleProductoComponent },
   { path: "Navbar", component: NavbarComponent },
   { path: "Footer", component: FooterComponent },
   { path: "DetalleProducto", component: DetalleProductoComponent },
@@ -26,6 +28,8 @@ const routes: Routes = [
   { path: "Register", component: RegisterComponent },
   { path: "Page404", component: Page404Component },
   { path: 'admin', component: ListadoProductosComponent},
+  { path: 'Asesorias', component: AsesoriasComponent},
+  { path: 'Bolsita', component: BolsitaComponent},
   { path: 'DetalleProducto/GestionProductos', component: GestionProductosComponent},
   { path: '**', component: Page404Component }
 ];

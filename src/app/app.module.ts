@@ -25,6 +25,8 @@ import { ChatComponent } from './components/chat/chat.component';
 //servicios
 import { ChatService } from "./services/chat.service";
 import { ApiService } from './services/api.service';
+import { AsesoriasComponent } from './components/asesorias/asesorias.component';
+import { BolsitaComponent } from './components/bolsita/bolsita.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ApiService } from './services/api.service';
     ListadoProductosComponent,
     GestionProductosComponent,
     ChatComponent,
+    AsesoriasComponent,
+    BolsitaComponent,
   ],
   imports: [
     BrowserModule,
