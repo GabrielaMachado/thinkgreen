@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 import { ListadoProductosComponent } from './components/admin/listado-productos/listado-productos.component';
 import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
@@ -19,7 +20,10 @@ import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { AuthService } from './services/auth.service';
 import { GestionProductosComponent } from './components/gestion-productos/gestion-productos.component';
+import { ChatComponent } from './components/chat/chat.component';
 
+//servicios
+import { ChatService } from "./services/chat.service";
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import { GestionProductosComponent } from './components/gestion-productos/gestio
     Page404Component,
     ListadoProductosComponent,
     GestionProductosComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,9 +46,10 @@ import { GestionProductosComponent } from './components/gestion-productos/gestio
     AppRoutingModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule
   ],
-  providers: [AuthService, AngularFirestore],
+  providers: [AuthService, AngularFirestore, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
