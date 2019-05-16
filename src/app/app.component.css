@@ -1,4 +1,13 @@
 /* No CSS *//*# sourceMappingURL=app.component.css.map */
+.main-container{
+    margin-top: 40px;
+    margin-bottom: 150px;
+}
+
+.puntero{
+    cursor: pinter;
+}
+
 .chat-window{
     padding: 10px;
     width: 300px;
@@ -6,4 +15,39 @@
     overflow: hidden;
     border: 1px solid #4080FF;
     border-radius: 20px;
+}
+
+.app-mensajes{
+    border: 1px coral;
+    overflow-y: scroll;
+    height: 270px;
+    padding: 5px;
+}
+
+/*Animaciones*/
+.animated{
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast{
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.fadeIn{
+    animation-name: fadeIn;
 }
