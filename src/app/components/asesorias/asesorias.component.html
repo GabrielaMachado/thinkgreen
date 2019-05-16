@@ -3,23 +3,23 @@
     <div class="card bg-light">
       <div class="card-body text-center">
         <h2>Te presentamos nuestro servicio de asesoría ambiental</h2>
-        <h4>Aquí puedes solicitar ayuda de tipo ambiental, ya sea inmediata o personalizada. 
-          Un software especializado y un grupo de profesionales en todas las áreas están dispuestos para
-        ayudarte a encontrar solciones para ti y sobre todo amigables con el medio ambiente.</h4>
+        <h4>Aquí puedes solicitar ayuda de tipo ambiental, ya sea inmediata o personalizada. Un software especializado y un grupo
+          de profesionales en todas las áreas están dispuestos para ayudarte a encontrar solciones para ti y sobre todo amigables
+          con el medio ambiente.</h4>
       </div>
     </div>
   </div>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active text-success" data-toggle="tab" href="#enlinea"
-        ><h6>Asesoría en línea</h6></a
-      >
+      <a class="nav-link active text-success" data-toggle="tab" href="#enlinea">
+        <h6>Asesoría en línea</h6>
+      </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-success" data-toggle="tab" href="#personalizada"
-        ><h6>Asesoría personalizada</h6></a
-      >
+      <a class="nav-link text-success" data-toggle="tab" href="#personalizada">
+        <h6>Asesoría personalizada</h6>
+      </a>
     </li>
   </ul>
 
@@ -29,11 +29,7 @@
       <div class="p-4">
         <h4></h4>
         <div class="dropdown dropright">
-          <button
-            type="button"
-            class="btn btn-outline-success dropdown-toggle"
-            data-toggle="dropdown"
-          >
+          <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
             Elije una opción
           </button>
           <div class="dropdown-menu">
@@ -45,18 +41,19 @@
         <h4>¿Cuál es tu problema?</h4>
         <textarea rows="6" cols="50" name="usrtxt" wrap="soft"> </textarea>
         <div>
-          <button
-            type="button"
-            class="btn btn-outline-success mr-2 btn-sm"
-            routerLink="Bolsita"
-          >
+          <button type="button" class="btn btn-outline-success mr-2 btn-sm" routerLink="Bolsita">
             Enviar
           </button>
         </div>
       </div>
     </div>
     <div class="tab-pane container fade" id="personalizada">
-      <h4>CHAT</h4>
+
+      <div class="container main-container">
+        <div class="chat-window">
+          <app-chat></app-chat>
+        </div>
+      </div>
     </div>
   </div>
   <!-- 

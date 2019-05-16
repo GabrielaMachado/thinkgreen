@@ -13,6 +13,7 @@ import { RegisterComponent } from "./components/users/register/register.componen
 import { GestionProductosComponent } from "./components/gestion-productos/gestion-productos.component";
 import { AsesoriasComponent } from "./components/asesorias/asesorias.component";
 import { BolsitaComponent } from "./components/bolsita/bolsita.component";
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   { path: '',
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'admin', component: ListadoProductosComponent},
   { path: 'Asesorias', component: AsesoriasComponent},
   { path: 'Bolsita', component: BolsitaComponent},
+  { path: 'Chat', component: ChatComponent},
   { path: 'DetalleProducto/GestionProductos', component: GestionProductosComponent},
   { path: '**', component: Page404Component }
 ];
