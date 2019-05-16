@@ -32,4 +32,8 @@ export class GestionProductosComponent implements OnInit {
     alert('Se creo correctamente')
   }
 
+ 
+
+
+
 }

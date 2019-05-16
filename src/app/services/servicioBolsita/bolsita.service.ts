@@ -1,12 +1,26 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './../api.service'
+import { Observable } from '../../../../node_modules/rxjs';
+import { ProductosInterface } from '../../models/productos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BolsitaService {
 
+ // bolsita: Observable<ProductosInterface[]>
+
   constructor() { }
+
+  anyadirCarrito() {
+    // Anyadimos el Nodo a nuestro carrito
+   // bolsita.push(this.getAttribute('marcador'))
+    // Calculo el total
+   // calcularTotal();
+    // Renderizamos el carrito 
+   // renderizarCarrito();
+    console.log('se añadió');
+  }
 }
 
 /*
@@ -74,17 +88,16 @@ function renderItems () {
   }
 }
 
+*/
 
-function anyadirCarrito () {
-  // Anyadimos el Nodo a nuestro carrito
-  carrito.push(this.getAttribute('marcador'))
-  // Calculo el total
-  calcularTotal();
-  // Renderizamos el carrito 
-  renderizarCarrito();
+let $bolsita = document.querySelector('#bolsita');
 
-}
+ 
 
+
+
+
+/*
 function renderizarCarrito () {
   // Vaciamos todo el html
   $carrito.textContent = '';

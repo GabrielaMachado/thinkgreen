@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { BolsitaService } from './../../services/servicioBolsita/bolsita.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DetalleProductoComponent implements OnInit {
 
-  constructor(private authservicio : AuthService , private api: ApiService) { }
+  constructor(private authservicio : AuthService , private api: ApiService, private bolsita : BolsitaService) { }
 
   public productos = []
   public producto =  ''
@@ -20,6 +21,13 @@ export class DetalleProductoComponent implements OnInit {
       console.log('PRODUCTOS', productos);
       this.productos = productos;
     })
+  }
+
+  AnadirBolsita(){
+    //let data = form.value
+    this.bolsita.anyadirCarrito();
+    //this.afs.collection('productos').add(data)
+  
   }
 
 }
