@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 import { ProductosInterface } from '../models/productos';
@@ -12,6 +12,7 @@ export class ApiService {
 
   private productsCollection: AngularFirestoreCollection<ProductosInterface>
   private productos: Observable<ProductosInterface[]>
+  private productosDoc: AngularFirestoreDocument<ProductosInterface>;
 
   constructor(private afs: AngularFirestore) {
     this.productsCollection = afs.collection<ProductosInterface>('productos');
@@ -34,10 +35,12 @@ export class ApiService {
     this.productsCollection.add(producto);
   }
 
-  delateProductos() {
-    console.log('Delate producto');
+  delateProductos(producto: ProductosInterface ) {
+    this.productosDoc = this.afs.doc(`productos/${producto.id}`);
+    this.productosDoc.delete();  
   }
-  updateProductos() {
-    console.log('Update producto');
+  updateProductos(producto: ProductosInterface) {
+    this.productosDoc = this.afs.doc(`productos/${producto.id}`);
+    this.productosDoc.update(producto);
   }
 }
