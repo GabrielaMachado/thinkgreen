@@ -1,27 +1,26 @@
 <div class="container">
-  <form>
+  <form  #form="ngForm" (submit)="CrearProducto(form)">
     <div class="row">
       <div class="col-md-5">
         <div class="form-group">
-          <label for="exampleInputEmail1">Product name</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Example: bolsa de yuca">
+          <label>Product name</label>
+          <input type="text" class="form-control" name="producto" 
+          #producto="ngModel" [(ngModel)]="api.formData.producto" placeholder="Example: bolsa de yuca">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Brand</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Example: adid">
+          <label>Brand</label>
+          <input type="text" class="form-control" name="imagen_url"
+          #imagen_url="ngModel" [(ngModel)]="api.formData.imagen_url" placeholder="Example: adid">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Price</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="$$$$$$">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Description</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+          <label>Price</label>
+          <input type="text" class="form-control" name="precio"
+          #precio="ngModel" [(ngModel)]="api.formData.precio" placeholder="$$$$$$">
         </div>
         <div class="col-md-5">
 
         </div>
-        <button type="submit" class="btn btn-primary">Agregar Produco</button>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Agregar Produco</button>
       </div>
     </div>
   </form>

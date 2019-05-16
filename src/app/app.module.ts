@@ -24,6 +24,7 @@ import { ChatComponent } from './components/chat/chat.component';
 
 //servicios
 import { ChatService } from "./services/chat.service";
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { ChatService } from "./services/chat.service";
     AngularFireAuthModule,
     FormsModule
   ],
-  providers: [AuthService, AngularFirestore, ChatService],
+  providers: [ApiService,AuthService, AngularFirestore, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
