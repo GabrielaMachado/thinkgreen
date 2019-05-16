@@ -74,7 +74,7 @@ function renderItems () {
   }
 }
 
-*/
+
 function anyadirCarrito () {
   // Anyadimos el Nodo a nuestro carrito
   carrito.push(this.getAttribute('marcador'))
@@ -139,3 +139,5 @@ function calcularTotal () {
 
 // Inicio
 renderItems();
+
+*/
