@@ -3,26 +3,72 @@
     <div class="card p-3">
       <h2 class="text-center">Regístrese</h2>
       <div class="card-body">
-        <form>
-          <div class="form-group">
-            <label >Correo electrónico</label>
-            <input
-              type="nombre"
-              class="form-control"
-              placeholder="Correo electrónico"
-            />
+        <form (ngSubmit)="RegistrarCliente(formNew)" #formNew="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.nombre" [ngModelOptions]="{standalone:
+                  true}" placeholder="Ejemplo: Pedro Perez">
+              </div>
+              <div class="form-group">
+                <label>Cedula</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.cedula" [ngModelOptions]="{standalone:
+                  true}" placeholder="Ejemplo: 1094974390">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.email" [ngModelOptions]="{standalone:
+                  true}" placeholder="Ejemplo: example@gmail.com">
+              </div>
+              <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" class="form-control" [(ngModel)]="cliente.password" [ngModelOptions]="{standalone:
+                  true}" placeholder="***********">
+              </div>
+
+              <div class="form-group">
+                <label>Direccion</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.direccion" [ngModelOptions]="{standalone:
+                  true}" placeholder="Mz 72 # 32 la patria">
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Edad</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.edad" [ngModelOptions]="{standalone:
+                  true}" placeholder="Ejemplo: 23">
+              </div>
+              <div class="form-group">
+                <label>Telefono</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.telefono" [ngModelOptions]="{standalone:
+                  true}" placeholder="Ejemplo: 3122995236">
+              </div>
+              <div class="form-group">
+                <label>Pais</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.pais" [ngModelOptions]="{standalone:
+                  true}" placeholder="Ejemplo: Colombia">
+              </div>
+              <div class="form-group">
+                <label>Ciudad</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.ciudad" [ngModelOptions]="{standalone:
+                  true}" placeholder="Armenia">
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label >Contraseña</label>
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Contraseña"
-            />
+          
+          <div class="row">
+              <div class="col-md-4">
+                </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary">Regístrarse</button>
+            </div>
+            <div class="col-md-4">
+              </div>
+
           </div>
-          <button type="submit" class="btn btn-block btn-success mr-2">
-            Registrar
-          </button>
+
         </form>
       </div>
     </div>

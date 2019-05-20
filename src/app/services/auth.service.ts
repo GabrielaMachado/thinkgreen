@@ -21,6 +21,15 @@ export class AuthService {
     });
   }
 
+
+  registrarUsuario(email:string,password:string){
+    return new Promise((resolve,reject)=>{
+      this.afAuth.auth.createUserWithEmailAndPassword(email,password)
+      .then(userData => resolve(userData), err => reject(err));
+    })
+  }
+
+  
   async login(email: string, password: string) {
     try {
       await this.afAuth.auth.signInWithEmailAndPassword(email, password);
