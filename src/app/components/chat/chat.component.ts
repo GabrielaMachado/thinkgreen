@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from "../../services/chat.service";
+import { AuthService } from 'thinkgreen/src/app/services/auth.service';
+import { Alert } from '../../../../node_modules/@types/selenium-webdriver';
 
 @Component({
   selector: 'app-chat',
@@ -11,7 +13,7 @@ export class ChatComponent implements OnInit{
   mensaje: string = "";
   elemento: any;
 
-  constructor(public _cs: ChatService) {
+  constructor(public _cs: ChatService,private api: AuthService) {
     this._cs.cargarMensajes()
     .subscribe( () =>{
       setTimeout(()=>{
@@ -33,5 +35,13 @@ export class ChatComponent implements OnInit{
     .then(() => this.mensaje = "")
     .catch((err) => console.error('Error al enviar', err));
   }  
+
+  errorAuth(){
+    if (this.api.isLoggedIn) {
+      this.enviar_mensaje();
+    }else{
+      alert('Debes Registrarte para poder hacer uso de nuestras asesorias');
+    }
+  }
 
 }

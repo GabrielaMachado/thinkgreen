@@ -1,4 +1,4 @@
-<h1>Chat</h1>
+<h3>Cuéntanos con detalle tu problema, muy pronto nos pondremos en contacto contigo.</h3>
 <hr>
 <div class="app-mensajes" id="app-mensajes">
     <div *ngFor="let chat of _cs.chats"
@@ -20,5 +20,5 @@
 <input type="text" name="mensaje"
     [(ngModel)]="mensaje"
     class="form-control"
-    (keyup.enter)="enviar_mensaje()"
+    (keyup.enter)="errorAuth()"
     placeholder="Enviar mensaje">
