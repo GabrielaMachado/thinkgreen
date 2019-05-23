@@ -19,7 +19,7 @@ export class ServicioClienteService {
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Cliente;
         const id = a.payload.doc.id;
-        return {id, ...data};
+        return { id, ...data };
       }))
     );
   }
@@ -28,17 +28,16 @@ export class ServicioClienteService {
     return this.clientes;
   }
 
-  addCliente(cliente : Cliente) {
+  addCliente(cliente: Cliente) {
     console.log('New producto');
     this.clienteCollections.add(cliente);
-
   }
 
-  delateClientes(cliente : Cliente) {
+  delateClientes(cliente: Cliente) {
     this.clienteDoc = this.afs.doc(`productos/${cliente.id}`);
-    this.clienteDoc.delete();  
+    this.clienteDoc.delete();
   }
-  updateClientes(cliente : Cliente) {
+  updateClientes(cliente: Cliente) {
     this.clienteDoc = this.afs.doc(`productos/${cliente.id}`);
     this.clienteDoc.update(cliente);
   }
