@@ -1,27 +1,28 @@
-import { Injectable } from '@angular/core';
-import { ApiService } from './../api.service'
-import { Observable } from '../../../../node_modules/rxjs';
-import { ProductosInterface } from '../../models/productos';
+import { Injectable } from "@angular/core";
+import { ApiService } from "./../api.service";
+import { Observable } from "../../../../node_modules/rxjs";
+import { ProductosInterface } from "../../models/productos";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class BolsitaService {
+  // bolsita: Observable<ProductosInterface[]>
 
- // bolsita: Observable<ProductosInterface[]>
+  constructor() {}
 
-  constructor() { }
-
-  anyadirCarrito() {
+  agregarBolsita() {
     // Anyadimos el Nodo a nuestro carrito
-   // bolsita.push(this.getAttribute('marcador'))
+    // bolsita.push(this.getAttribute('marcador'))
     // Calculo el total
-   // calcularTotal();
-    // Renderizamos el carrito 
-   // renderizarCarrito();
-    console.log('se añadió');
+    // calcularTotal();
+    // Renderizamos el carrito
+    // renderizarCarrito();
+    console.log("se añadió");
   }
 }
+
+let $bolsita = document.querySelector("#bolsita");
 
 /*
 
@@ -89,13 +90,6 @@ function renderItems () {
 }
 
 */
-
-let $bolsita = document.querySelector('#bolsita');
-
- 
-
-
-
 
 /*
 function renderizarCarrito () {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from "../../services/chat.service";
-import { AuthService } from 'thinkgreen/src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Alert } from '../../../../node_modules/@types/selenium-webdriver';
 
 @Component({
