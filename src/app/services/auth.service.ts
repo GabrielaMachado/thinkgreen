@@ -22,14 +22,25 @@ export class AuthService {
   }
 
 
-  registrarUsuario(email:string,password:string){
-    return new Promise((resolve,reject)=>{
-      this.afAuth.auth.createUserWithEmailAndPassword(email,password)
-      .then(userData => resolve(userData), err => reject(err));
-    })
+  registrarUsuario(email: string, password: string) {
+    this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(da => {
+      this.afAuth.auth.signInWithEmailAndPassword(email, password).then(al => {
+        console.log(this.user.email);
+        this.user.sendEmailVerification().then(ga => {
+          this.logout();
+
+        })
+      }
+
+      )
+    }
+
+    );
+    alert('Estas a un paso de registrarte');
+
   }
 
-  
+
   async login(email: string, password: string) {
     try {
       await this.afAuth.auth.signInWithEmailAndPassword(email, password);

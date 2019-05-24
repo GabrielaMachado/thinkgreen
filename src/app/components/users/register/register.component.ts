@@ -35,10 +35,7 @@ export class RegisterComponent implements OnInit {
   RegistrarCliente(formNew: NgForm) {
     console.log(formNew);
     this.api.addCliente(this.cliente);
-    this.auth
-      .registrarUsuario(this.cliente.email, this.cliente.password)
-      .then(res => {})
-      .catch(err => console.log("err", err.message));
+    this.auth.registrarUsuario(this.cliente.email, this.cliente.password);
 
     this.router.navigate(["DetalleProducto"]);
     alert("Se creo correctamente");
