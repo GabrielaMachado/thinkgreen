@@ -41,9 +41,9 @@ export class DetalleProductoComponent implements OnInit {
     this.clearState();
   }
 
-  AnadirBolsita() {
+  AnadirBolsita(item) {
     //let data = form.value
-    this.bolsita.agregarBolsita();
+    this.bolsita.agregarBolsita(item);
     //this.afs.collection('productos').add(data)
   }
 

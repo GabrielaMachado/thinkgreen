@@ -11,19 +11,19 @@ export class BolsitaService {
 
   constructor() {}
 
-  agregarBolsita() {
+  agregarBolsita(item) {
     // Anyadimos el Nodo a nuestro carrito
     // bolsita.push(this.getAttribute('marcador'))
     // Calculo el total
     // calcularTotal();
     // Renderizamos el carrito
     // renderizarCarrito();
+    bolsita.push(item);
     console.log("se añadió");
   }
 }
 
-let $bolsita = document.querySelector("#bolsita");
-
+let bolsita = [];
 /*
 
 let baseDeDatos = [
