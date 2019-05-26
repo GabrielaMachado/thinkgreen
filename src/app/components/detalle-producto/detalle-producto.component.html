@@ -1,104 +1,177 @@
 <div class="container">
-    <div class="row p-1 mx-auto">
-        <article *ngFor="let producto of productos">
-            <div class="col-md-4 p-2">
-                <div class="card ">
-                    <img src="{{producto.imagen_url}}" class="card-img-top mx-auto" alt="...">
-                    <div class="card-body mx-auto">
-                        <h4 class="card-title">{{producto.producto | uppercase}}</h4>
-                        <h5 class="card-text">{{producto.precio}}</h5>
-                        <a href="#" *ngIf="!authservicio.isLoggedIn" class="btn btn-outline-secondary btn-sm">Ver productos</a>
+  <div class="row p-1 mx-auto">
+    <article *ngFor="let producto of productos">
+      <div class="col-md-4 p-2">
+        <div class="card ">
+          <img
+            src="{{ producto.imagen_url }}"
+            class="card-img-top mx-auto d-block products"
+            alt="..."
+          />
+          <div class="card-body mx-auto">
+            <h4 class="card-title">{{ producto.producto | uppercase }}</h4>
+            <h5 class="card-text">{{ producto.precio }}</h5>
+            <a
+              href="#"
+              *ngIf="!authservicio.isLoggedIn"
+              class="btn btn-outline-secondary btn-sm"
+              >Ver productos</a
+            >
 
-                        <a (click)="AnadirBolsita(producto)" *ngIf="!authservicio.isLoggedIn" class="btn btn-outline-success mr-2 btn-sm">Añadir a la bolsita</a>
-                        <br>
-                        <br>
-                        <a (click)="clearState()" *ngIf="authservicio.isLoggedIn && editState && productoToEdit.id == producto.id" class="btn btn-outline-success mr-2 btn-sm">Delete</a>
-                        <a data-toggle="modal" *ngIf="authservicio.isLoggedIn" data-target="#myModal" class="btn btn-outline-success mr-2 btn-sm">Ver producto</a>
-                    </div>
-                    <div class="modal" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Modificar Producto</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <form (ngSubmit)="onModificarProducto(producto)">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Product name</label>
-                                                    <input type="text" class="form-control" [(ngModel)]="producto.producto" [ngModelOptions]="{standalone:
-                                                            true}" placeholder="Example: bolsa de yuca">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Brand</label>
-                                                    <input type="text" class="form-control" [(ngModel)]="producto.marca" [ngModelOptions]="{standalone:
-                                                            true}" placeholder="Example: adid">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Price</label>
-                                                    <input type="text" class="form-control" [(ngModel)]="producto.precio" [ngModelOptions]="{standalone:
-                                                            true}" placeholder="$$$$$$">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Image</label>
-                                                    <input type="text" class="form-control" [(ngModel)]="producto.imagen_url" [ngModelOptions]="{standalone:
-                                                            true}" placeholder="https://ejemplo.com/image.png">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea type="textarea" class="form-control" [(ngModel)]="producto.descripcion" [ngModelOptions]="{standalone:
-                                                                true}"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Reference</label>
-                                                    <input type="text" class="form-control" [(ngModel)]="producto.referencia" [ngModelOptions]="{standalone:
-                                                                true}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <button type="submit" (click)="ModificarProducto($event,producto)" data-dismiss="modal" class="btn btn-success">Modificar</button>
-                                                
-                                                <button  (click)="eliminarProducto($event,producto)" data-dismiss="modal" class="btn btn-danger">Eliminar</button>
-
-                                            </div>
-
-
-                                        </div>
-
-
-
-                                    </form>
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+            <a
+              (click)="AnadirBolsita(producto)"
+              *ngIf="!authservicio.isLoggedIn"
+              class="btn btn-outline-success mr-2 btn-sm"
+              >Añadir a la bolsita</a
+            >
+            <br />
+            <br />
+            <a
+              (click)="clearState()"
+              *ngIf="
+                authservicio.isLoggedIn &&
+                editState &&
+                productoToEdit.id == producto.id
+              "
+              class="btn btn-outline-success mr-2 btn-sm"
+              >Delete</a
+            >
+            <a
+              data-toggle="modal"
+              *ngIf="authservicio.isLoggedIn"
+              data-target="#myModal"
+              class="btn btn-outline-success mr-2 btn-sm"
+              >Ver producto</a
+            >
+          </div>
+          <div class="modal" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Modificar Producto</h4>
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
                 </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <form (ngSubmit)="onModificarProducto(producto)">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Product name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="producto.producto"
+                            [ngModelOptions]="{ standalone: true }"
+                            placeholder="Example: bolsa de yuca"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label>Brand</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="producto.marca"
+                            [ngModelOptions]="{ standalone: true }"
+                            placeholder="Example: adid"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label>Price</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="producto.precio"
+                            [ngModelOptions]="{ standalone: true }"
+                            placeholder="$$$$$$"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Image</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="producto.imagen_url"
+                            [ngModelOptions]="{ standalone: true }"
+                            placeholder="https://ejemplo.com/image.png"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label>Description</label>
+                          <textarea
+                            type="textarea"
+                            class="form-control"
+                            [(ngModel)]="producto.descripcion"
+                            [ngModelOptions]="{ standalone: true }"
+                          ></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label>Reference</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="producto.referencia"
+                            [ngModelOptions]="{ standalone: true }"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <button
+                          type="submit"
+                          (click)="ModificarProducto($event, producto)"
+                          data-dismiss="modal"
+                          class="btn btn-success"
+                        >
+                          Modificar
+                        </button>
+
+                        <button
+                          (click)="eliminarProducto($event, producto)"
+                          data-dismiss="modal"
+                          class="btn btn-danger"
+                        >
+                          Eliminar
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    data-dismiss="modal"
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </div>
             </div>
-
-        </article>
-        <div class="col-md-4 p-2">
-
-            <a href="#" *ngIf="authservicio.isLoggedIn" class="card btn btn-outline-success mr-2 btn-sm" routerLink="GestionProductos">Nuevo Producto</a>
+          </div>
         </div>
+      </div>
+    </article>
+    <div class="col-md-4 p-2">
+      <a
+        href="#"
+        *ngIf="authservicio.isLoggedIn"
+        class="card btn btn-outline-success mr-2 btn-sm"
+        routerLink="GestionProductos"
+        >Nuevo Producto</a
+      >
     </div>
-    <div class="row">
-        <div class="col-md-12">
-        </div>
-    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"></div>
+  </div>
 </div>
