@@ -13,7 +13,7 @@ export class DetalleProductoComponent implements OnInit {
   constructor(
     private authservicio: AuthService,
     private api: ApiService,
-    private bolsita: BolsitaService
+    private servicio: BolsitaService
   ) {}
 
   productos: ProductosInterface[];
@@ -43,7 +43,7 @@ export class DetalleProductoComponent implements OnInit {
 
   AnadirBolsita(item) {
     //let data = form.value
-    this.bolsita.agregarBolsita(item);
+    this.servicio.agregarBolsita(item);
     //this.afs.collection('productos').add(data)
   }
 

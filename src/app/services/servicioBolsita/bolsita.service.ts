@@ -2,13 +2,14 @@ import { Injectable } from "@angular/core";
 import { ApiService } from "./../api.service";
 import { Observable } from "../../../../node_modules/rxjs";
 import { ProductosInterface } from "../../models/productos";
+import { Bolsita } from "../../models/Bolsita";
 
 @Injectable({
   providedIn: "root"
 })
 export class BolsitaService {
   // bolsita: Observable<ProductosInterface[]>
-
+  public bolsita = [];
   constructor() {}
 
   agregarBolsita(item) {
@@ -18,12 +19,24 @@ export class BolsitaService {
     // calcularTotal();
     // Renderizamos el carrito
     // renderizarCarrito();
-    bolsita.push(item);
-    console.log("se añadió");
+    this.bolsita.push(item);
+    console.log(item);
+    console.log(this.bolsita);
+  }
+
+  getContenido() {
+    return this.bolsita;
+  }
+
+  calcularTotal() {
+    var total = 0;
+    for (var producto of this.bolsita) {
+      total += producto.Precio;
+    }
+    return total;
   }
 }
 
-let bolsita = [];
 /*
 
 let baseDeDatos = [

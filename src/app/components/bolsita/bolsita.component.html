@@ -6,10 +6,10 @@
     <aside class="col-sm-4">
       <h2>Bolsita</h2>
       <!-- Elementos del carrito -->
-      <ul id="carrito" class="list-group">
-        <li class="list-group-item" ng-repeat="let producto of bolsita">
-          XXXX
-          <strong class="pull-right"> $precio</strong>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="producto in bolsita">
+          {{ producto.producto }}
+          <strong class="pull-right">{{ producto.Precio | currency }}</strong>
         </li>
       </ul>
       <hr />

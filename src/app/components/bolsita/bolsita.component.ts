@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { BolsitaService } from "./../../services/servicioBolsita/bolsita.service";
+import { ApiService } from "./../../services/api.service";
+import { ProductosInterface } from "./../../models/productos";
 
 @Component({
-  selector: 'app-bolsita',
-  templateUrl: './bolsita.component.html',
-  styleUrls: ['./bolsita.component.sass']
+  selector: "app-bolsita",
+  templateUrl: "./bolsita.component.html",
+  styleUrls: ["./bolsita.component.sass"]
 })
 export class BolsitaComponent implements OnInit {
+  constructor(private api: ApiService, private servicio: BolsitaService) {}
 
-  constructor() { }
+  bolsita: ProductosInterface[];
 
   ngOnInit() {
+    this.servicio.getContenido().push(bolsita => {
+      this.bolsita = bolsita;
+    });
+    //   this.bolsita.get .subscribe(productos => {
+    //    this.productos = productos;
+    // });
   }
 
+  calcularTotal() {
+    //let data = form.value
+    // return this.servicio.calcularTotal;
+    //this.afs.collection('productos').add(data)
+  }
 }
