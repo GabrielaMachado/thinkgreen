@@ -28,6 +28,7 @@ import { ApiService } from './services/api.service';
 import { AsesoriasComponent } from './components/asesorias/asesorias.component';
 import { BolsitaComponent } from './components/bolsita/bolsita.component';
 import { NotificacionComponent } from './components/notificacion/notificacion.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { NotificacionComponent } from './components/notificacion/notificacion.co
     AsesoriasComponent,
     BolsitaComponent,
     NotificacionComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ export class DetalleProductoComponent implements OnInit {
     private servicio: BolsitaService
   ) {}
 
+  filterProductos = '';
   productos: ProductosInterface[];
   editState: boolean = false;
   productoToEdit: ProductosInterface;
@@ -50,5 +51,10 @@ export class DetalleProductoComponent implements OnInit {
   eliminarProducto(event, producto: ProductosInterface) {
     this.api.delateProductos(producto);
     this.clearState();
+  }
+
+  filtrarProducto(){
+    alert('holaaa');
+    console.log('holaa');
   }
 }
