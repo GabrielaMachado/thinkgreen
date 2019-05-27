@@ -1,6 +1,13 @@
 <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <input type="text" name="filterProductos" class="form-control"
+            placeholder="Realizar una busqueda de productos en Thinkgreen" style="height:50"
+            [(ngModel)]="filterProductos">
+        </div>
+    </div>
     <div class="row p-1 mx-auto">
-        <article *ngFor="let producto of productos">
+        <article *ngFor="let producto of productos | filter:filterProductos">
             <div class="col-md-4 p-2">
                 <div class="card ">
                     <img src="{{producto.imagen_url}}" class="card-img-top mx-auto" alt="...">
