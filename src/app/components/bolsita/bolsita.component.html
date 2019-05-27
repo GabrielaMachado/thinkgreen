@@ -1,20 +1,22 @@
 <div class="container">
   <div class="row">
     <!-- Elementos generados a partir del JSON -->
-    <main id="items" class="col-sm-3 "></main>
+    <main id="items" class="col-sm-3"></main>
     <!-- Carrito -->
-    <aside class="col-sm-4">
+    <aside class="col-sm-6">
       <h2>Bolsita</h2>
       <!-- Elementos del carrito -->
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="producto in bolsita">
+        <li class="list-group-item" *ngFor="let producto of bolsita">
           {{ producto.producto }}
-          <strong class="pull-right">{{ producto.Precio | currency }}</strong>
+          <p class="text-right font-weight-bold">{{ producto.precio }}</p>
         </li>
       </ul>
       <hr />
       <!-- Precio total -->
-      <p class="text-right">Total: $<span id="total"></span></p>
+      <p class="text-right">
+        Total: $ {{ calcularTotal() }}<span id="total"></span>
+      </p>
     </aside>
   </div>
 </div>

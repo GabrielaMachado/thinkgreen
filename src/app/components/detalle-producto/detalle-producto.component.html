@@ -1,4 +1,5 @@
 <div class="container">
+  <hr />
   <div class="row justify-content-center">
     <div class="col-8">
       <input
@@ -27,17 +28,15 @@
               href="#"
               *ngIf="!authservicio.isLoggedIn"
               class="btn btn-outline-secondary btn-sm"
-              >Ver productos</a
+              >Ver producto</a
             >
-
+            <hr />
             <a
               (click)="AnadirBolsita(producto)"
               *ngIf="!authservicio.isLoggedIn"
               class="btn btn-outline-success mr-2 btn-sm"
               >Añadir a la bolsita</a
             >
-            <br />
-            <br />
             <a
               (click)="clearState()"
               *ngIf="

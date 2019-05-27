@@ -29,9 +29,10 @@ export class BolsitaService {
   }
 
   calcularTotal() {
-    var total = 0;
-    for (var producto of this.bolsita) {
-      total += producto.Precio;
+    let total: number = 0;
+    let precio: number = 0;
+    for (let producto of this.bolsita) {
+      total = producto.precio + total;
     }
     return total;
   }
