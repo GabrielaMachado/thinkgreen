@@ -1,10 +1,9 @@
-import { Solicitud } from './Solicitud';
-import { ProductosInterface } from './productos';
+import { Solicitud } from "./Solicitud";
+import { ProductosInterface } from "./productos";
 
-export class Bolsita{
-    producto: ProductosInterface;
-    descripcion: number;
+export class Bolsita {
+  producto: ProductosInterface;
+  descripcion: number;
 
-    constructor() {
-    }
-}   
+  constructor() {}
+}
