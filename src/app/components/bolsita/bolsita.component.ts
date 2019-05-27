@@ -29,7 +29,7 @@ export class BolsitaComponent implements OnInit {
 
   calcularTotal() {
     //let data = form.value
-    console.log(this.servicio.calcularTotal());
+    return this.servicio.calcularTotal();
     //this.afs.collection('productos').add(data)
   }
 }
