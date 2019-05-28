@@ -36,6 +36,18 @@ export class BolsitaService {
     }
     return total;
   }
+
+  borrarItemCarrito(item) {
+    let posicion = this.bolsita.indexOf(item);
+    this.bolsita.splice(posicion, 1);
+    this.calcularTotal();
+  }
+
+  actualizar() {
+    let numero: number = 0;
+    numero = this.bolsita.length;
+    return numero;
+  }
 }
 
 /*

@@ -22,14 +22,18 @@ export class BolsitaComponent implements OnInit {
     //    this.productos = productos;
     // });
   }
-
-  prueba() {
-    console.log(this.servicio.bolsita);
-  }
-
   calcularTotal() {
     //let data = form.value
     return this.servicio.calcularTotal();
     //this.afs.collection('productos').add(data)
+  }
+  AnadirBolsita(item) {
+    //let data = form.value
+    this.servicio.agregarBolsita(item);
+    //this.afs.collection('productos').add(data)
+  }
+
+  borrarItemCarrito(item) {
+    this.servicio.borrarItemCarrito(item);
   }
 }

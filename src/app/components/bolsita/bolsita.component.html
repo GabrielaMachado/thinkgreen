@@ -1,6 +1,13 @@
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+  crossorigin="anonymous"
+/>
+
 <div class="container">
   <div class="row">
-    <div class="row p-1 mx-auto">
+    <div class="row p-1 mx-auto col-sm-6">
       <article *ngFor="let producto of bolsita">
         <div class="col-md-4 p-2">
           <div class="card ">
@@ -10,35 +17,19 @@
               alt="..."
             />
             <div class="card-body mx-auto">
-              <h4 class="card-title">{{ producto.producto | uppercase }}</h4>
-              <h5 class="card-text">{{ producto.descripcion }}</h5>
-              <a href="#" class="btn btn-outline-secondary btn-sm"
-                >Ver producto</a
-              >
-              <hr />
+              <h6 class="card-title">{{ producto.producto | uppercase }}</h6>
+              <!--   <h6 class="card-text">{{ producto.descripcion }}</h6> -->
               <a
                 (click)="AnadirBolsita(producto)"
-                *ngIf="!authservicio.isLoggedIn"
-                class="btn btn-outline-success mr-2 btn-sm"
-                >Añadir a la bolsita</a
-              >
+                class="btn btn-outline-success btn-sm"
+                ><i class="fas fa-plus"></i
+              ></a>
               <a
-                (click)="clearState()"
-                *ngIf="
-                  authservicio.isLoggedIn &&
-                  editState &&
-                  productoToEdit.id == producto.id
-                "
-                class="btn btn-outline-success mr-2 btn-sm"
-                >Delete</a
-              >|
-              <a
-                data-toggle="modal"
-                *ngIf="authservicio.isLoggedIn"
-                data-target="#myModal"
-                class="btn btn-outline-success mr-2 btn-sm"
-                >Ver producto</a
-              >
+                style="margin-left: 40px"
+                (click)="borrarItemCarrito(producto)"
+                class="btn btn-outline-danger btn-sm "
+                ><i class="fas fa-minus"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -47,7 +38,7 @@
 
     <!-- Carrito -->
     <aside class="col-sm-5">
-      <h2>Bolsita</h2>
+      <h2>Bolsita <i class="fas fa-shopping-bag mdb-gallery-view-icon"></i></h2>
       <!-- Elementos del carrito -->
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let producto of bolsita">
@@ -57,9 +48,16 @@
       </ul>
       <hr />
       <!-- Precio total -->
-      <p class="text-right">
+      <h3 class="text-right">
         Total: $ {{ calcularTotal() }}<span id="total"></span>
-      </p>
+      </h3>
+      <hr />
+      <button class="btn btn-success mr-2 btn-block">
+        <h3>
+          COMPRAR <i class="fas fa-credit-card mdb-gallery-view-icon"></i>
+        </h3>
+      </button>
+      <hr />
     </aside>
   </div>
 </div>

@@ -35,8 +35,9 @@
               (click)="AnadirBolsita(producto)"
               *ngIf="!authservicio.isLoggedIn"
               class="btn btn-outline-success mr-2 btn-sm"
-              >Añadir a la bolsita</a
-            >
+              >Añadir a la bolsita
+              <i class="fas fa-shopping-bag mdb-gallery-view-icon"></i>
+            </a>
             <a
               (click)="clearState()"
               *ngIf="
