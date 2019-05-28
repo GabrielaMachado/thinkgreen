@@ -1,6 +1,7 @@
 export interface Mensaje {
-    nombre: string;
+    chatId: string;
     mensaje: string;
     fecha?: number;
-    uid?: string;
+    enviadoAdmin: boolean;
+    nombre: string;
 }
