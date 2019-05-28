@@ -1,9 +1,52 @@
 <div class="container">
   <div class="row">
-    <!-- Elementos generados a partir del JSON -->
-    <main id="items" class="col-sm-3"></main>
+    <div class="row p-1 mx-auto">
+      <article *ngFor="let producto of bolsita">
+        <div class="col-md-4 p-2">
+          <div class="card ">
+            <img
+              src="{{ producto.imagen_url }}"
+              class="card-img-top mx-auto d-block products"
+              alt="..."
+            />
+            <div class="card-body mx-auto">
+              <h4 class="card-title">{{ producto.producto | uppercase }}</h4>
+              <h5 class="card-text">{{ producto.descripcion }}</h5>
+              <a href="#" class="btn btn-outline-secondary btn-sm"
+                >Ver producto</a
+              >
+              <hr />
+              <a
+                (click)="AnadirBolsita(producto)"
+                *ngIf="!authservicio.isLoggedIn"
+                class="btn btn-outline-success mr-2 btn-sm"
+                >Añadir a la bolsita</a
+              >
+              <a
+                (click)="clearState()"
+                *ngIf="
+                  authservicio.isLoggedIn &&
+                  editState &&
+                  productoToEdit.id == producto.id
+                "
+                class="btn btn-outline-success mr-2 btn-sm"
+                >Delete</a
+              >|
+              <a
+                data-toggle="modal"
+                *ngIf="authservicio.isLoggedIn"
+                data-target="#myModal"
+                class="btn btn-outline-success mr-2 btn-sm"
+                >Ver producto</a
+              >
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
     <!-- Carrito -->
-    <aside class="col-sm-6">
+    <aside class="col-sm-5">
       <h2>Bolsita</h2>
       <!-- Elementos del carrito -->
       <ul class="list-group">
