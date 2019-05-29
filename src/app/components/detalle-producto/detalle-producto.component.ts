@@ -14,7 +14,7 @@ export class DetalleProductoComponent implements OnInit {
     private authservicio: AuthService,
     private api: ApiService,
     private servicio: BolsitaService
-  ) {}
+  ) { }
 
   filterProductos = '';
   productos: ProductosInterface[];
@@ -22,7 +22,6 @@ export class DetalleProductoComponent implements OnInit {
   productoToEdit: ProductosInterface;
   productoEncontrado: ProductosInterface;
 
-  
   ngOnInit() {
     this.api.getProductos().subscribe(productos => {
       this.productos = productos;
@@ -55,13 +54,13 @@ export class DetalleProductoComponent implements OnInit {
     this.clearState();
   }
 
-  filtrarProducto(){
+  filtrarProducto() {
     alert('holaaa');
     console.log('holaa');
   }
 
-  buscar(id: string){
-    for(let product of this.productos){
+  buscar(id: string) {
+    for (let product of this.productos) {
       if (product.id == id) {
         this.productoEncontrado = product;
       }
