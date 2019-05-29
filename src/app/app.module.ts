@@ -29,6 +29,8 @@ import { AsesoriasComponent } from './components/asesorias/asesorias.component';
 import { BolsitaComponent } from './components/bolsita/bolsita.component';
 import { NotificacionComponent } from './components/notificacion/notificacion.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ComponentsComponent } from './chat_component/components/components.component';
+import { ChatPublicacionComponent } from './components/chat-publicacion/chat-publicacion.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     BolsitaComponent,
     NotificacionComponent,
     FilterPipe,
+    ComponentsComponent,
+    ChatPublicacionComponent,
   ],
   imports: [
     BrowserModule,

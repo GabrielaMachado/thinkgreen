@@ -26,14 +26,14 @@
             <h5 class="card-text">{{ producto.precio }}</h5>
             <a
               href="#"
-              *ngIf="!authservicio.isLoggedIn"
+              *ngIf="!(validarAdmin())"
               class="btn btn-outline-secondary btn-sm"
               >Ver producto</a
             >
             <hr />
             <a
               (click)="AnadirBolsita(producto)"
-              *ngIf="!authservicio.isLoggedIn"
+              *ngIf="!(validarAdmin())"
               class="btn btn-outline-success mr-2 btn-sm"
               >Añadir a la bolsita
 
@@ -51,7 +51,7 @@
             >
             <a
               data-toggle="modal"
-              *ngIf="authservicio.isLoggedIn"
+              *ngIf="validarAdmin()"
               data-target="#myModal"
               class="btn btn-outline-success mr-2 btn-sm"
               >Ver producto</a
@@ -177,7 +177,7 @@
     <div class="col-md-4 p-2">
       <a
         href="#"
-        *ngIf="authservicio.isLoggedIn"
+        *ngIf="validarAdmin()"
         class="card btn btn-outline-success mr-2 btn-sm"
         routerLink="GestionProductos"
         >Nuevo Producto</a

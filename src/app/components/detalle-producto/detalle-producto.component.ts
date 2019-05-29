@@ -3,6 +3,7 @@ import { ApiService } from "src/app/services/api.service";
 import { AuthService } from "src/app/services/auth.service";
 import { BolsitaService } from "./../../services/servicioBolsita/bolsita.service";
 import { ProductosInterface } from "../../models/productos";
+import { retry } from '../../../../node_modules/rxjs/operators';
 
 @Component({
   selector: "app-detalle-producto",
@@ -56,5 +57,17 @@ export class DetalleProductoComponent implements OnInit {
   filtrarProducto(){
     alert('holaaa');
     console.log('holaa');
+  }
+
+  public validarAdmin(){
+    if(this.authservicio.isLoggedIn){
+      if(this.authservicio.user.email == "gabrielamachadopr@gmail.com"){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
   }
 }
