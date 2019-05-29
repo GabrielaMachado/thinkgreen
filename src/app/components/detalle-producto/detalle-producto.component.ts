@@ -20,7 +20,9 @@ export class DetalleProductoComponent implements OnInit {
   productos: ProductosInterface[];
   editState: boolean = false;
   productoToEdit: ProductosInterface;
+  productoEncontrado: ProductosInterface;
 
+  
   ngOnInit() {
     this.api.getProductos().subscribe(productos => {
       this.productos = productos;
@@ -56,5 +58,13 @@ export class DetalleProductoComponent implements OnInit {
   filtrarProducto(){
     alert('holaaa');
     console.log('holaa');
+  }
+
+  buscar(id: string){
+    for(let product of this.productos){
+      if (product.id == id) {
+        this.productoEncontrado = product;
+      }
+    }
   }
 }
