@@ -14,11 +14,13 @@ import { GestionProductosComponent } from "./components/gestion-productos/gestio
 import { AsesoriasComponent } from "./components/asesorias/asesorias.component";
 import { BolsitaComponent } from "./components/bolsita/bolsita.component";
 import { ChatComponent } from './components/chat/chat.component';
+import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 
 const routes: Routes = [
   { path: '',
     component: DetalleProductoComponent,
     pathMatch: 'full' },
+  { path: "RecuperarContrasena", component: RecuperarContrasenaComponent},
   { path: "Logo", component: LogoComponent },
   { path: "Home", component: DetalleProductoComponent },
   { path: "Navbar", component: NavbarComponent },

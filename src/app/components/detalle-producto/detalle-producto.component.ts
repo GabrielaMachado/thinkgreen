@@ -21,7 +21,9 @@ export class DetalleProductoComponent implements OnInit {
   productos: ProductosInterface[];
   editState: boolean = false;
   productoToEdit: ProductosInterface;
+  productoEncontrado: ProductosInterface;
 
+  
   ngOnInit() {
     this.api.getProductos().subscribe(productos => {
       this.productos = productos;
@@ -59,6 +61,7 @@ export class DetalleProductoComponent implements OnInit {
     console.log('holaa');
   }
 
+<<<<<<< HEAD
   public validarAdmin(){
     if(this.authservicio.isLoggedIn){
       if(this.authservicio.user.email == "gabrielamachadopr@gmail.com"){
@@ -68,6 +71,13 @@ export class DetalleProductoComponent implements OnInit {
       }
     }else{
       return false;
+=======
+  buscar(id: string){
+    for(let product of this.productos){
+      if (product.id == id) {
+        this.productoEncontrado = product;
+      }
+>>>>>>> d11fc1378b8665624b3d313f3f20581ce8d1b2db
     }
   }
 }

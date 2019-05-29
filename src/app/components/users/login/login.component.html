@@ -26,6 +26,11 @@
               required
             />
           </div>
+<<<<<<< HEAD
+            <a routerLink="../RecuperarContrasena">¿Recuperar contraseña?</a>
+            <button (click)="authService.login(userEmail.value, userPassword.value)"  type="submit" class="btn btn-block btn-warning">Ingresar</button>
+            <button (click)="authService.googleLogin()"  class="btn btn-block btn-success">Login con Google</button>
+=======
           <button
             (click)="authService.login(userEmail.value, userPassword.value)"
             type="submit"
@@ -39,6 +44,7 @@
           >
             Login con Google
           </button>
+>>>>>>> dbd1d2975d9c3a6a8111fb53d99af65660328c52
         </form>
       </div>
     </div>
