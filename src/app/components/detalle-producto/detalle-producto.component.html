@@ -14,17 +14,27 @@
           <div class="card-body mx-auto">
             <h4 class="card-title">{{ producto.producto | uppercase }}</h4>
             <h5 class="card-text">{{ producto.precio }}</h5>
-            <a href="#" *ngIf="!validarAdmin()" class="btn btn-outline-secondary btn-sm">Ver productos</a>
+            <a href="#" 
+            *ngIf="!(validarAdmin())" 
+            class="btn btn-outline-secondary btn-sm"
+            >Ver producto</a>
+            <hr />
+            <a (click)="AnadirBolsita(producto)" 
+            *ngIf="!(validarAdmin())" 
+            class="btn btn-outline-success mr-2 btn-sm">Añadir a la bolsita
+          <i class="fas fa-shopping-bag mdb-gallery-view-icon"></i></a>
 
-            <a (click)="AnadirBolsita(producto)" *ngIf="!authservicio.isLoggedIn" class="btn btn-outline-success mr-2 btn-sm">Añadir a la bolsita</a>
-            <br />
-            <br />
-            <a (click)="clearState()" *ngIf="
+              <br />
+              <br />
+              <a (click)="clearState()" *ngIf="
                 authservicio.isLoggedIn &&
                 editState &&
                 productoToEdit.id == producto.id" class="btn btn-outline-success mr-2 btn-sm">Delete</a>
-            <a data-toggle="modal" *ngIf="validarAdmin()" data-target="#myModal" class="btn btn-outline-success mr-2 btn-sm" (click)="buscar(producto.id)">Ver producto</a>
+            <a data-toggle="modal" *ngIf="validarAdmin()" data-target="#myModal" 
+            class="btn btn-outline-success mr-2 btn-sm" (click)="buscar(producto.id)">Ver producto</a>
           </div>
+
+
           <div class="modal" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -100,7 +110,7 @@
       </div>
     </article>
     <div class="col-md-4 p-2">
-      <a href="#" *ngIf="authservicio.isLoggedIn" class="card btn btn-outline-success mr-2 btn-sm" routerLink="GestionProductos">Nuevo Producto</a>
+      <a href="#" *ngIf="validarAdmin()" class="card btn btn-outline-success mr-2 btn-sm" routerLink="GestionProductos">Nuevo Producto</a>
     </div>
   </div>
   <div class="row">
