@@ -1,0 +1,27 @@
+<hr />
+<div class="app-mensajes" id="app-mensajes">
+  <div
+    *ngFor="let chat_publicacion of _csp.mensaje_publicacion"
+    [ngClass]="{ 'text-right': !enviadoAdmin }"
+  >
+    <span class="badge badge-success">{{ chat_publicacion.nombre }}</span>
+    <p>
+      {{ chat_publicacion.mensaje }}
+    </p>
+  </div>
+  <!--<div>
+        <span class="badge badge-success">Maria</span>
+        <p>
+            Holiii x2
+        </p>
+    </div>-->
+</div>
+
+<input
+  type="text"
+  name="mensaje"
+  [(ngModel)]="mensaje"
+  class="form-control"
+  (keyup.enter)="errorAuth()"
+  placeholder="Enviar mensaje"
+/>

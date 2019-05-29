@@ -29,6 +29,8 @@ import { AsesoriasComponent } from './components/asesorias/asesorias.component';
 import { BolsitaComponent } from './components/bolsita/bolsita.component';
 import { NotificacionComponent } from './components/notificacion/notificacion.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ComponentsComponent } from './chat_component/components/components.component';
+import { ChatPublicacionComponent } from './components/chat-publicacion/chat-publicacion.component';
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 
 @NgModule({
@@ -49,6 +51,8 @@ import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/
     BolsitaComponent,
     NotificacionComponent,
     FilterPipe,
+    ComponentsComponent,
+    ChatPublicacionComponent,
     RecuperarContrasenaComponent,
   ],
   imports: [
