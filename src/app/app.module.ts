@@ -29,12 +29,9 @@ import { AsesoriasComponent } from './components/asesorias/asesorias.component';
 import { BolsitaComponent } from './components/bolsita/bolsita.component';
 import { NotificacionComponent } from './components/notificacion/notificacion.component';
 import { FilterPipe } from './pipes/filter.pipe';
-<<<<<<< HEAD
 import { ComponentsComponent } from './chat_component/components/components.component';
 import { ChatPublicacionComponent } from './components/chat-publicacion/chat-publicacion.component';
-=======
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
->>>>>>> d11fc1378b8665624b3d313f3f20581ce8d1b2db
 
 @NgModule({
   declarations: [
@@ -54,12 +51,9 @@ import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/
     BolsitaComponent,
     NotificacionComponent,
     FilterPipe,
-<<<<<<< HEAD
     ComponentsComponent,
     ChatPublicacionComponent,
-=======
     RecuperarContrasenaComponent,
->>>>>>> d11fc1378b8665624b3d313f3f20581ce8d1b2db
   ],
   imports: [
     BrowserModule,
