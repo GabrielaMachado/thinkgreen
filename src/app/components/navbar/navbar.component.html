@@ -1,16 +1,113 @@
-<nav class="navbar navbar-expand-lg navbar-light fondo">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light fondo sticky-top">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-    <div class="navbar-nav mx-auto">
-      <a class="nav-item nav-link" routerLink="DetalleProducto">Productos</a>
-      <a class="nav-item nav-link" routerLink="Asesorias">Asesórate</a>
-      <button type="button"class="btn btn-outline-success mr-2 btn-sm" routerLink="Bolsita">Bolsita</button>
-      <div class="icono">
-        <img src="../././assets/img/chat.png" routerLink="Asesorias">
-      </div>
+  <div class="collapse navbar-collapse  " id="navbarNavAltMarkup">
+    <div class="navbar-nav mx-auto ">
+      <a class="nav-item nav-link font-weight-bold" routerLink="DetalleProducto"
+        >Productos</a
+      >
+      <a class="nav-item nav-link font-weight-bold" routerLink="Asesorias"
+        >Asesórate</a
+      >
+      <button
+        type="button"
+        class="btn btn-link btn-lg mr-2 nav-item nav-link justify-content-end"
+        routerLink="Bolsita"
+      >
+        <i class="fas fa-shopping-bag mdb-gallery-view-icon">
+          <small>
+            <span class="badge badge-pill badge-danger">{{
+              actualizarBolsita()
+            }}</span>
+          </small>
+        </i>
+      </button>
+      <li class="dropdown notifications-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-bell-o"></i>
+          <span class="label label-warning">1</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="header">Tu tienes 1 notifiaciones</li>
+          <li>
+            <!-- inner menu: contains the actual data -->
+            <ul class="menu"></ul>
+          </li>
+        </ul>
+      </li>
+      <button
+        type="button"
+        class="btn btn-link btn-lg mr-2 nav-item nav-link justify-content-end"
+        routerLink="Asesorias"
+      >
+        <i class="fas fa-comments mdb-gallery-view-icon"></i>
+      </button>
     </div>
   </div>
 </nav>
+
+<!--<nav class="navbar navbar-expand-lg navbar-light fondo sticky-top">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse  " id="navbarNavAltMarkup">
+    <div class="navbar-nav mx-auto ">
+      <a class="nav-item nav-link font-weight-bold" routerLink="DetalleProducto"
+        >Productos</a
+      >
+      <a class="nav-item nav-link font-weight-bold" routerLink="Asesorias"
+        >Asesórate</a
+      >
+    </div>
+    <div class="navbar-nav justify-content-end ">
+      <button
+        type="button"
+        class="btn btn-link btn-lg mr-2 nav-item nav-link justify-content-end"
+        routerLink="Bolsita"
+      >
+        <i class="fas fa-shopping-bag mdb-gallery-view-icon">
+          <span class="badge badge-pill badge-danger">{{
+            actualizarBolsita()
+          }}</span>
+        </i>
+      </button>
+      <li class="dropdown notifications-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-bell-o"></i>
+          <span class="label label-warning">1</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="header">Tu tienes 1 notifiaciones</li>
+          <li>
+            <ul class="menu"></ul>
+          </li>
+        </ul>
+      </li>
+      <button
+        type="button"
+        class="btn btn-link btn-lg mr-2 nav-item nav-link justify-content-end"
+        routerLink="Asesorias"
+      >
+        <i class="fas fa-comments mdb-gallery-view-icon"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+-->

@@ -1,20 +1,63 @@
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+  crossorigin="anonymous"
+/>
+
 <div class="container">
   <div class="row">
-    <!-- Elementos generados a partir del JSON -->
-    <main id="items" class="col-sm-3 "></main>
+    <div class="row p-1 mx-auto col-sm-6">
+      <article *ngFor="let producto of bolsita">
+        <div class="col-md-4 p-2">
+          <div class="card ">
+            <img
+              src="{{ producto.imagen_url }}"
+              class="card-img-top mx-auto d-block products"
+              alt="..."
+            />
+            <div class="card-body mx-auto">
+              <h6 class="card-title">{{ producto.producto | uppercase }}</h6>
+              <!--   <h6 class="card-text">{{ producto.descripcion }}</h6> -->
+              <a
+                (click)="AnadirBolsita(producto)"
+                class="btn btn-outline-success btn-sm"
+                ><i class="fas fa-plus"></i
+              ></a>
+              <a
+                style="margin-left: 40px"
+                (click)="borrarItemCarrito(producto)"
+                class="btn btn-outline-danger btn-sm "
+                ><i class="fas fa-minus"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
     <!-- Carrito -->
-    <aside class="col-sm-4">
-      <h2>Bolsita</h2>
+    <aside class="col-sm-5">
+      <h2>Bolsita <i class="fas fa-shopping-bag mdb-gallery-view-icon"></i></h2>
       <!-- Elementos del carrito -->
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="producto in bolsita">
+        <li class="list-group-item" *ngFor="let producto of bolsita">
           {{ producto.producto }}
-          <strong class="pull-right">{{ producto.Precio | currency }}</strong>
+          <p class="text-right font-weight-bold">{{ producto.precio }}</p>
         </li>
       </ul>
       <hr />
       <!-- Precio total -->
-      <p class="text-right">Total: $<span id="total"></span></p>
+      <h3 class="text-right">
+        Total: $ {{ calcularTotal() }}<span id="total"></span>
+      </h3>
+      <hr />
+      <button class="btn btn-success mr-2 btn-block">
+        <h3>
+          COMPRAR <i class="fas fa-credit-card mdb-gallery-view-icon"></i>
+        </h3>
+      </button>
+      <hr />
     </aside>
   </div>
 </div>

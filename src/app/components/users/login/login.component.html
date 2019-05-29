@@ -5,15 +5,46 @@
         <form>
           <div class="form-group">
             <label>Correo electrónico</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electrónico" #userEmail required>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Correo electrónico"
+              #userEmail
+              required
+            />
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" #userPassword required>
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Contraseña"
+              #userPassword
+              required
+            />
           </div>
+<<<<<<< HEAD
             <a routerLink="../RecuperarContrasena">¿Recuperar contraseña?</a>
             <button (click)="authService.login(userEmail.value, userPassword.value)"  type="submit" class="btn btn-block btn-warning">Ingresar</button>
             <button (click)="authService.googleLogin()"  class="btn btn-block btn-success">Login con Google</button>
+=======
+          <button
+            (click)="authService.login(userEmail.value, userPassword.value)"
+            type="submit"
+            class="btn btn-block btn-warning"
+          >
+            Ingresar
+          </button>
+          <button
+            (click)="authService.googleLogin()"
+            class="btn btn-block btn-success"
+          >
+            Login con Google
+          </button>
+>>>>>>> dbd1d2975d9c3a6a8111fb53d99af65660328c52
         </form>
       </div>
     </div>

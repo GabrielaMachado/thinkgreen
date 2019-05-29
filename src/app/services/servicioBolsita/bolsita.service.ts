@@ -29,11 +29,24 @@ export class BolsitaService {
   }
 
   calcularTotal() {
-    var total = 0;
-    for (var producto of this.bolsita) {
-      total += producto.Precio;
+    let total: number = 0;
+    let precio: number = 0;
+    for (let producto of this.bolsita) {
+      total = producto.precio + total;
     }
     return total;
+  }
+
+  borrarItemCarrito(item) {
+    let posicion = this.bolsita.indexOf(item);
+    this.bolsita.splice(posicion, 1);
+    this.calcularTotal();
+  }
+
+  actualizar() {
+    let numero: number = 0;
+    numero = this.bolsita.length;
+    return numero;
   }
 }
 

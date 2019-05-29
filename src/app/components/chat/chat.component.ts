@@ -14,12 +14,12 @@ export class ChatComponent implements OnInit{
   elemento: any;
 
   constructor(public _cs: ChatService,private api: AuthService) {
-    this._cs.cargarMensajes()
-    .subscribe( () =>{
-      setTimeout(()=>{
-        this.elemento.scrollTop = this.elemento.scrollHeight;
-      },20);
-    });
+    this._cs.cargarMensajes();
+    // .subscribe( () =>{
+    //   setTimeout(()=>{
+    //     this.elemento.scrollTop = this.elemento.scrollHeight;
+    //   },20);
+    // });
    }
 
   ngOnInit(){
@@ -31,9 +31,10 @@ export class ChatComponent implements OnInit{
     if(this.mensaje.length === 0){
       return;
     }
-    this._cs.agregarMensaje(this.mensaje)
-    .then(() => this.mensaje = "")
-    .catch((err) => console.error('Error al enviar', err));
+    this._cs.agregarMensaje(this.mensaje);
+    this.mensaje="";
+    // .then(() => this.mensaje = "")
+    // .catch((err) => console.error('Error al enviar', err));
   }  
 
   errorAuth(){

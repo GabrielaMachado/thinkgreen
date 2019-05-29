@@ -1,4 +1,5 @@
 <div class="container">
+  <hr />
   <div class="row justify-content-center">
     <div class="col-8">
       <input type="text" name="filterProductos" class="form-control" placeholder="¿Qué producto estás buscando?" style="height:50"
@@ -13,12 +14,33 @@
           <div class="card-body mx-auto">
             <h4 class="card-title">{{ producto.producto | uppercase }}</h4>
             <h5 class="card-text">{{ producto.precio }}</h5>
+<<<<<<< HEAD
             <a href="#" *ngIf="!authservicio.isLoggedIn" class="btn btn-outline-secondary btn-sm">Ver productos</a>
 
             <a (click)="AnadirBolsita(producto)" *ngIf="!authservicio.isLoggedIn" class="btn btn-outline-success mr-2 btn-sm">Añadir a la bolsita</a>
             <br />
             <br />
             <a (click)="clearState()" *ngIf="
+=======
+            <a
+              href="#"
+              *ngIf="!authservicio.isLoggedIn"
+              class="btn btn-outline-secondary btn-sm"
+              >Ver producto</a
+            >
+            <hr />
+            <a
+              (click)="AnadirBolsita(producto)"
+              *ngIf="!authservicio.isLoggedIn"
+              class="btn btn-outline-success mr-2 btn-sm"
+              >Añadir a la bolsita
+
+              <i class="fas fa-shopping-bag mdb-gallery-view-icon"></i>
+            </a>
+            <a
+              (click)="clearState()"
+              *ngIf="
+>>>>>>> dbd1d2975d9c3a6a8111fb53d99af65660328c52
                 authservicio.isLoggedIn &&
                 editState &&
                 productoToEdit.id == producto.id
