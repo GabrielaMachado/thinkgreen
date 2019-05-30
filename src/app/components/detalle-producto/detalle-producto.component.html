@@ -2,35 +2,24 @@
   <hr />
   <div class="row justify-content-center">
     <div class="col-8">
-      <input
-        type="text"
-        name="filterProductos"
-        class="form-control"
-        placeholder="¿Qué producto estás buscando?"
-        style="height:50"
-        [(ngModel)]="filterProductos"
-      />
+      <input type="text" name="filterProductos" class="form-control" placeholder="¿Qué producto estás buscando?" style="height:50"
+        [(ngModel)]="filterProductos" />
     </div>
   </div>
   <div class="row p-1 mx-auto">
     <article *ngFor="let producto of productos | filter: filterProductos">
       <div class="col-md-4 p-2">
         <div class="card ">
-          <img
-            src="{{ producto.imagen_url }}"
-            class="card-img-top mx-auto d-block products"
-            alt="..."
-          />
+          <img src="{{ producto.imagen_url }}" class="card-img-top mx-auto d-block products" alt="..." />
           <div class="card-body mx-auto">
             <h4 class="card-title">{{ producto.producto | uppercase }}</h4>
             <h5 class="card-text">{{ producto.precio }}</h5>
-            <a
-              href="#"
-              *ngIf="!authservicio.isLoggedIn"
-              class="btn btn-outline-secondary btn-sm"
-              >Ver producto</a
-            >
+            <a href="#" 
+            *ngIf="!(validarAdmin())" 
+            class="btn btn-outline-secondary btn-sm"
+            >Ver producto</a>
             <hr />
+<<<<<<< HEAD
             <a
               (click)="AnadirBolsita(producto)"
               class="btn btn-outline-success mr-2 btn-sm"
@@ -40,21 +29,24 @@
             <a
               (click)="clearState()"
               *ngIf="
+=======
+            <a (click)="AnadirBolsita(producto)" 
+            *ngIf="!(validarAdmin())" 
+            class="btn btn-outline-success mr-2 btn-sm">Añadir a la bolsita
+          <i class="fas fa-shopping-bag mdb-gallery-view-icon"></i></a>
+
+              <br />
+              <br />
+              <a (click)="clearState()" *ngIf="
+>>>>>>> d5501d5ca9c3bbc7afd513a30325c5a4158cc237
                 authservicio.isLoggedIn &&
                 editState &&
-                productoToEdit.id == producto.id
-              "
-              class="btn btn-outline-success mr-2 btn-sm"
-              >Delete</a
-            >
-            <a
-              data-toggle="modal"
-              *ngIf="authservicio.isLoggedIn"
-              data-target="#myModal"
-              class="btn btn-outline-success mr-2 btn-sm"
-              >Ver producto</a
-            >
+                productoToEdit.id == producto.id" class="btn btn-outline-success mr-2 btn-sm">Delete</a>
+            <a data-toggle="modal" *ngIf="validarAdmin()" data-target="#myModal" 
+            class="btn btn-outline-success mr-2 btn-sm" (click)="buscar(producto.id)">Ver producto</a>
           </div>
+
+
           <div class="modal" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -73,82 +65,43 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Product name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            [(ngModel)]="producto.producto"
-                            [ngModelOptions]="{ standalone: true }"
-                            placeholder="Example: bolsa de yuca"
+                          <input type="text" class="form-control" [(ngModel)]="producto.producto" [ngModelOptions]="{ standalone: true }" placeholder="Example: bolsa de yuca"
                           />
                         </div>
                         <div class="form-group">
                           <label>Brand</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            [(ngModel)]="producto.marca"
-                            [ngModelOptions]="{ standalone: true }"
-                            placeholder="Example: adid"
+                          <input type="text" class="form-control" [(ngModel)]="producto.marca" [ngModelOptions]="{ standalone: true }" placeholder="Example: adid"
                           />
                         </div>
                         <div class="form-group">
                           <label>Price</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            [(ngModel)]="producto.precio"
-                            [ngModelOptions]="{ standalone: true }"
-                            placeholder="$$$$$$"
+                          <input type="text" class="form-control" [(ngModel)]="producto.precio" [ngModelOptions]="{ standalone: true }" placeholder="$$$$$$"
                           />
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Image</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            [(ngModel)]="producto.imagen_url"
-                            [ngModelOptions]="{ standalone: true }"
-                            placeholder="https://ejemplo.com/image.png"
+                          <input type="text" class="form-control" [(ngModel)]="producto.imagen_url" [ngModelOptions]="{ standalone: true }" placeholder="https://ejemplo.com/image.png"
                           />
                         </div>
                         <div class="form-group">
                           <label>Description</label>
-                          <textarea
-                            type="textarea"
-                            class="form-control"
-                            [(ngModel)]="producto.descripcion"
-                            [ngModelOptions]="{ standalone: true }"
-                          ></textarea>
+                          <textarea type="textarea" class="form-control" [(ngModel)]="producto.descripcion" [ngModelOptions]="{ standalone: true }"></textarea>
                         </div>
                         <div class="form-group">
                           <label>Reference</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            [(ngModel)]="producto.referencia"
-                            [ngModelOptions]="{ standalone: true }"
-                          />
+                          <input type="text" class="form-control" [(ngModel)]="producto.referencia" [ngModelOptions]="{ standalone: true }" />
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
-                        <button
-                          type="submit"
-                          (click)="ModificarProducto($event, producto)"
-                          data-dismiss="modal"
-                          class="btn btn-success"
-                        >
+                        <button type="submit" (click)="ModificarProducto($event, producto)" data-dismiss="modal" class="btn btn-success">
                           Modificar
                         </button>
 
-                        <button
-                          (click)="eliminarProducto($event, producto)"
-                          data-dismiss="modal"
-                          class="btn btn-danger"
-                        >
+                        <button (click)="eliminarProducto($event, producto)" data-dismiss="modal" class="btn btn-danger">
                           Eliminar
                         </button>
                       </div>
@@ -158,11 +111,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-success"
-                    data-dismiss="modal"
-                  >
+                  <button type="button" class="btn btn-success" data-dismiss="modal">
                     Cerrar
                   </button>
                 </div>
@@ -173,13 +122,7 @@
       </div>
     </article>
     <div class="col-md-4 p-2">
-      <a
-        href="#"
-        *ngIf="authservicio.isLoggedIn"
-        class="card btn btn-outline-success mr-2 btn-sm"
-        routerLink="GestionProductos"
-        >Nuevo Producto</a
-      >
+      <a href="#" *ngIf="validarAdmin()" class="card btn btn-outline-success mr-2 btn-sm" routerLink="GestionProductos">Nuevo Producto</a>
     </div>
   </div>
   <div class="row">

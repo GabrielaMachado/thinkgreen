@@ -11,6 +11,8 @@ import { AngularFireAuth } from "../../../node_modules/@angular/fire/auth";
 import * as firebase from "firebase/app";
 import { UUID } from "angular2-uuid";
 import { isNullOrUndefined } from "util";
+import { DetalleProductoComponent } from "./../components/detalle-producto/detalle-producto.component";
+import { isNull } from '../../../node_modules/@angular/compiler/src/output/output_ast';
 //import { Observable } from '../../../node_modules/rxjs';
 
 //export interface Cliente {nombre:string}
@@ -28,8 +30,10 @@ export class ChatService {
   public mensaje: Mensaje[] = [];
   public usuario: any = {};
   public chat: Chat[] = [];
+  public idChat: string = null;
+  elemento: any;
 
-  constructor(private afs: AngularFirestore, public afAuth: AngularFireAuth) {
+  constructor(private afs: AngularFirestore, public afAuth: AngularFireAuth, private dp: DetalleProductoComponent) {
     //this.clientesCollection = afs.collection<Cliente>('clientes');
     //this.cliente= this.clientesCollection.valueChanges();
     //this.clientes.subscribe(cliente=>{
@@ -56,7 +60,7 @@ export class ChatService {
     this.usuario = null;
   }
 
-  cargarMensajes() {
+  cargarMensajes(usuarioId = null) {
     if (isNullOrUndefined(localStorage.getItem("user"))) {
       this.mensaje = [];
       return;
@@ -67,20 +71,23 @@ export class ChatService {
     return chatcol.valueChanges().subscribe((chats: Chat[]) => {
       console.log(chats);
       for (let chat of chats) {
-        if (chat.userId == this.usuario.uid) {
-          idChat = chat.chatId;
+        if(isNullOrUndefined(usuarioId)){
+          if (chat.userId == this.usuario.uid) {
+            idChat = chat.chatId;
+          }
+        } else {
+          if (chat.userId == usuarioId) {
+            idChat = chat.chatId;
+          }
         }
       }
-      console.log("chat ", idChat);
+      console.log("chat peticion", idChat);
       if (idChat != "") {
-        this.itemsCollection = this.afs.collection<Mensaje>("mensaje", ref =>
-          ref.orderBy("fecha", "desc").limit(5)
-        );
+        this.itemsCollection = this.afs.collection<Mensaje>("mensaje", ref => ref.orderBy('fecha', 'desc'));
         return this.itemsCollection
           .valueChanges()
           .pipe(
             map((mensajes: Mensaje[]) => {
-              //console.log(mensajes);
               this.mensaje = [];
               for (let mensaje of mensajes) {
                 if (mensaje.chatId == idChat) {
@@ -97,35 +104,58 @@ export class ChatService {
     });
   }
 
+  setChatId(id: string){
+    this.idChat = id;
+  }
+
   agregarMensaje(texto: string) {
     var chatsUsuario = false;
-    var idChat;
+    this.itemsCollection = this.itemsCollection = this.afs.collection<Mensaje>("mensaje");
     this.chatCollection = this.afs.collection<Chat>("chats");
     return this.chatCollection.valueChanges().subscribe((chats: Chat[]) => {
-      for (let chat of chats) {
-        if (chat.userId == this.usuario.uid) {
-          chatsUsuario = true;
-          idChat = chat.chatId;
+      if (isNullOrUndefined(this.idChat)) {
+        for (let chat of chats) {
+          if (chat.userId == this.usuario.uid) {
+            chatsUsuario = true;
+            this.idChat = chat.chatId;
+          }
+        }
+        if (!chatsUsuario) {
+          let newChat: Chat = {
+            chatId: UUID.UUID(),
+            nombreUsuario: this.usuario.nombre,
+            userId: this.usuario.uid
+          };
+          this.idChat = newChat.chatId;
+          this.chatCollection.add(newChat);
         }
       }
-      if (!chatsUsuario) {
-        let newChat: Chat = {
-          chatId: UUID.UUID(),
-          nombreUsuario: this.usuario.nombre,
-          userId: this.usuario.uid
-        };
-        idChat = newChat.chatId;
-        this.chatCollection.add(newChat);
+
+      let mensaje: Mensaje;
+      if (this.dp.validarAdmin()) {
+        mensaje = {
+          nombre: 'Administrador',
+          chatId: this.idChat,
+          mensaje: texto,
+          fecha: new Date().getTime(),
+          enviadoAdmin: true
+        }
+
+      } else {
+        mensaje = {
+          nombre: this.usuario.nombre,
+          chatId: this.idChat,
+          mensaje: texto,
+          fecha: new Date().getTime(),
+          enviadoAdmin: false
+        }
       }
-      let mensaje: Mensaje = {
-        nombre: this.usuario.nombre,
-        chatId: idChat,
-        mensaje: texto,
-        fecha: new Date().getTime(),
-        enviadoAdmin: false
-      };
       return this.itemsCollection.add(mensaje);
     });
-    texto = "";
+  }
+
+  obtenerChats(){
+    var lista = this.afs.collection<Chat>("chats");
+    return lista.valueChanges();
   }
 }

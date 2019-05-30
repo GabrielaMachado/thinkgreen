@@ -3,6 +3,7 @@ import { ApiService } from "src/app/services/api.service";
 import { AuthService } from "src/app/services/auth.service";
 import { BolsitaService } from "./../../services/servicioBolsita/bolsita.service";
 import { ProductosInterface } from "../../models/productos";
+import { retry } from '../../../../node_modules/rxjs/operators';
 
 @Component({
   selector: "app-detalle-producto",
@@ -20,7 +21,9 @@ export class DetalleProductoComponent implements OnInit {
   productos: ProductosInterface[];
   editState: boolean = false;
   productoToEdit: ProductosInterface;
+  productoEncontrado: ProductosInterface;
 
+  
   ngOnInit() {
     this.api.getProductos().subscribe(productos => {
       this.productos = productos;
@@ -58,5 +61,24 @@ export class DetalleProductoComponent implements OnInit {
   filtrarProducto() {
     alert("holaaa");
     console.log("holaa");
+  }
+
+  validarAdmin(){
+    if(this.authservicio.isLoggedIn){
+      if(this.authservicio.user.uid == "V0uqIot60Pbat1SILAeBSDDUoKG2"){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
+  buscar(id: string){
+    for(let product of this.productos){
+      if (product.id == id) {
+        this.productoEncontrado = product;
+      }
+    }
   }
 }

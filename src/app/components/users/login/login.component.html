@@ -26,19 +26,11 @@
               required
             />
           </div>
-          <button
-            (click)="authService.login(userEmail.value, userPassword.value)"
-            type="submit"
-            class="btn btn-block btn-warning"
-          >
-            Ingresar
-          </button>
-          <button
-            (click)="authService.googleLogin()"
-            class="btn btn-block btn-success"
-          >
-            Login con Google
-          </button>
+            <a routerLink="../RecuperarContrasena">¿Recuperar contraseña?</a>
+            <button (click)="authService.login(userEmail.value, userPassword.value)"  
+            type="submit" class="btn btn-block btn-warning">Ingresar</button>
+            <button (click)="authService.googleLogin()"  
+            class="btn btn-block btn-success">Login con Google</button>
         </form>
       </div>
     </div>

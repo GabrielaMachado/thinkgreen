@@ -1,0 +1,15 @@
+.chat-usuario-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between; 
+}
+
+.lista-chat-usuarios{
+    border: 1px solid #009348;
+    border-radius: 20px;
+    padding: 10px 50px 10px 20px;
+}
+
+.lista-usuarios{
+    cursor: pointer;
+}

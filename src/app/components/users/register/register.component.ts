@@ -27,7 +27,8 @@ export class RegisterComponent implements OnInit {
     direccion: "",
     pais: "",
     ciudad: "",
-    tipo: true
+    tipo: true,
+    isAdmin: false
   };
 
   ngOnInit() {}

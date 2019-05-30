@@ -40,10 +40,18 @@ export class AuthService {
 
   }
 
+  resetPassword(email: string) {
+    var auth = firebase.auth();
+    return auth.sendPasswordResetEmail(email)
+      .then(() => console.log("email sent"))
+      .catch((error) => console.log(error))
+  }
+
 
   async login(email: string, password: string) {
     try {
-      await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+      var asdf = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+      console.log('tafur',asdf);
       this.router.navigate(['DetalleProducto']);
     } catch (e) {
       alert('Error!' + e.message);
