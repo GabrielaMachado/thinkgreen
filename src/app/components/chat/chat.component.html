@@ -1,28 +1,20 @@
 <!--<h3>Cuéntanos con detalle tu problema, muy pronto nos pondremos en contacto contigo.</h3>-->
-<hr />
-<div class="app-mensajes" id="app-mensajes">
-  <div
-    *ngFor="let chat of _cs.mensaje"
-    [ngClass]="{ 'text-right': !enviadoAdmin }"
-  >
-    <span class="badge badge-success">{{ chat.nombre }}</span>
-    <p>
-      {{ chat.mensaje }}
-    </p>
-  </div>
-  <!--<div>
-        <span class="badge badge-success">Maria</span>
+<div class="chat-usuarios-container">
+  <div class="chat-usuarios">
+    <hr />
+    <div class="app-mensajes" id="app-mensajes">
+      <div *ngFor="let chat of _cs.mensaje" [ngClass]="{ 'text-right': !chat.enviadoAdmin }">
+        <span 
+        [ngClass]="{'badge': true, 'badge-success': !chat.enviadoAdmin, 'badge-danger': chat.enviadoAdmin}">
+        {{ chat.nombre }}
+      </span>
         <p>
-            Holiii x2
+          {{ chat.mensaje }}
         </p>
-    </div>-->
-</div>
+      </div>
+    </div>
 
-<input
-  type="text"
-  name="mensaje"
-  [(ngModel)]="mensaje"
-  class="form-control"
-  (keyup.enter)="errorAuth()"
-  placeholder="Enviar mensaje"
-/>
+    <input type="text" name="mensaje" [(ngModel)]="mensaje" class="form-control" (keyup.enter)="errorAuth()" placeholder="Enviar mensaje"
+    />
+  </div>
+</div>

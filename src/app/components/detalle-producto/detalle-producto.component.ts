@@ -61,9 +61,9 @@ export class DetalleProductoComponent implements OnInit {
     console.log('holaa');
   }
 
-  public validarAdmin(){
+  validarAdmin(){
     if(this.authservicio.isLoggedIn){
-      if(this.authservicio.user.email == "gabrielamachadopr@gmail.com"){
+      if(this.authservicio.user.uid == "V0uqIot60Pbat1SILAeBSDDUoKG2"){
         return true;
       }else{
         return false;

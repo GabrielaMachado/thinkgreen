@@ -91,36 +91,37 @@ export class ChatPublicacionService {
     });
   }
 
-  // agregarMensaje_publicacion(texto: string) {
-  //   var chatsUsuario = false;
-  //   var idChat;
-  //   this.chatCollection = this.afs.collection<Chat_publicacion>("chat-publicacion");
-  //   return this.chatCollection.valueChanges().subscribe((chats: Chat_publicacion[]) => {
-  //     for (let chat of chats) {
-  //       if (chat.userId == this.usuario.uid) {
-  //         chatsUsuario = true;
-  //         idChat = chat.chat_publicacionId;
-  //       }
-  //     }
-  //     if (!chatsUsuario) {
-  //       let newChat: Chat_publicacion = {
-  //         chat_publicacionId: UUID.UUID(),
-  //         nombreUsuario: this.usuario.nombre,
-  //         userId: this.usuario.uid
-  //       };
-  //       idChat = newChat.chat_publicacionId;
-  //       this.chatCollection.add(newChat);
-  //     }
-  //     let mensaje_publicacion: Mensaje_publicacion = {
-  //       nombre: this.usuario.nombre,
-  //       chat_publicacionId: idChat,
-  //       mensaje: texto,
-  //       fecha: new Date().getTime(),
-  //       enviadoAdmin: false
-  //     };
-  //     return this.itemsCollection.add(mensaje_publicacion);
-  //   });
-  //   texto = "";
-  // }
+  agregarMensaje_publicacion(texto: string) {
+    var chatsUsuario_publicacion = false;
+    var idChat_publicacion;
+    this.itemsCollection = this.itemsCollection = this.afs.collection<Mensaje_publicacion>("mensaje_publicacion");
+    this.chatCollection = this.afs.collection<Chat_publicacion>("chat_publicacion");
+    return this.chatCollection.valueChanges().subscribe((chats_publicacion: Chat_publicacion[]) => {
+      for (let chat_publicacion of chats_publicacion) {
+        if (chat_publicacion.userId_publicacion == this.usuario_publicacion.uid) {
+          chatsUsuario_publicacion = true;
+          idChat_publicacion = chat_publicacion.chat_publicacionId;
+        }
+      }
+      if (!chatsUsuario_publicacion) {
+        let newChat_publicacion: Chat_publicacion = {
+          chat_publicacionId: UUID.UUID(),
+          nombreUsuario_publicacion: this.usuario_publicacion.nombre,
+          userId_publicacion: this.usuario_publicacion.uid
+        };
+        idChat_publicacion = newChat_publicacion.chat_publicacionId;
+        this.chatCollection.add(newChat_publicacion);
+      }
+      let mensaje_publicacion: Mensaje_publicacion = {
+        nombre_publicacion: this.usuario_publicacion.nombre,
+        chat_publicacionId: idChat_publicacion,
+        mensaje_publicacion: texto,
+        fecha: new Date().getTime(),
+        enviadoAdmin_publicacion: false
+      };
+      return this.itemsCollection.add(mensaje_publicacion);
+    });
+    texto = "";
+  }
 }
 

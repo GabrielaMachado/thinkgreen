@@ -26,7 +26,7 @@ export class ChatPublicacionComponent implements OnInit {
     if(this.mensaje.length === 0){
       return;
     }
-    //this._csp.agregarMensaje_publicacion(this.mensaje);
+    this._csp.agregarMensaje_publicacion(this.mensaje);
     this.mensaje="";
     // .then(() => this.mensaje = "")
     // .catch((err) => console.error('Error al enviar', err));

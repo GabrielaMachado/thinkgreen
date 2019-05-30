@@ -64,7 +64,7 @@ import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/
     AngularFireAuthModule,
     FormsModule
   ],
-  providers: [ApiService,AuthService, AngularFirestore, ChatService],
+  providers: [ApiService,AuthService, AngularFirestore, ChatService, DetalleProductoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

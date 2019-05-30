@@ -2,6 +2,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from "../../services/chat.service";
 import { Alert } from '../../../../node_modules/@types/selenium-webdriver';
+import { Chat } from '../../interface/chat.interface';
 
 @Component({
   selector: 'app-chat',
@@ -12,9 +13,11 @@ export class ChatComponent implements OnInit{
 
   mensaje: string = "";
   elemento: any;
+  chatsUsuaros: Chat[];
 
   constructor(public _cs: ChatService,private api: AuthService) {
     this._cs.cargarMensajes();
+    this.cargarChats();
     // .subscribe( () =>{
     //   setTimeout(()=>{
     //     this.elemento.scrollTop = this.elemento.scrollHeight;
@@ -45,4 +48,10 @@ export class ChatComponent implements OnInit{
     }
   }
 
+  cargarChats(){
+    this._cs.obtenerChats().subscribe((chat: Chat[]) =>{
+      console.log('sdfghj ',chat);
+      this.chatsUsuaros = chat;
+    });
+  }
 }

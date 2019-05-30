@@ -8,4 +8,18 @@
     color: white;
 }
 
+.chat-usuarios-container{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.chat-usuarios{
+    width: 70%;
+}
+
+.lista-chat-usuarios{
+    width: 30%;
+}
+
 $color: white;

@@ -64,7 +64,7 @@
       </div>
     </div>
     <div class="tab-pane container fade" id="personalizada">
-      <div class="container main-container">
+      <div class="container main-container chat-usuario-container">
         <div class="chat-window">
           <h3>
             Cuéntanos con detalle tu problema, muy pronto nos pondremos en
@@ -74,6 +74,12 @@
           </h3>
           <app-chat></app-chat>
         </div>
+        <div class="lista-chat-usuarios" *ngIf="dp.validarAdmin()">
+            <h2>Usuarios</h2>
+            <div class="lista-usuarios" *ngFor="let usuario of chatsUsuaros" >
+              <a (click)="seleccionarUsuario(usuario)">- {{ usuario.nombreUsuario }}</a>
+            </div>
+          </div>
       </div>
     </div>
     <div class="tab-pane container fade" id="contactate">
