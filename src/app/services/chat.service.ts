@@ -83,7 +83,8 @@ export class ChatService {
       }
       console.log("chat peticion", idChat);
       if (idChat != "") {
-        this.itemsCollection = this.afs.collection<Mensaje>("mensaje", ref => ref.orderBy('fecha', 'desc'));
+        this.itemsCollection = this.afs.collection<Mensaje>("mensaje", 
+        ref => ref.orderBy('fecha', 'desc'));
         return this.itemsCollection
           .valueChanges()
           .pipe(
