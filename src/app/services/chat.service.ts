@@ -31,6 +31,7 @@ export class ChatService {
   public usuario: any = {};
   public chat: Chat[] = [];
   public idChat: string = null;
+  elemento: any;
 
   constructor(private afs: AngularFirestore, public afAuth: AngularFireAuth, private dp: DetalleProductoComponent) {
     //this.clientesCollection = afs.collection<Cliente>('clientes');
@@ -82,7 +83,7 @@ export class ChatService {
       }
       console.log("chat peticion", idChat);
       if (idChat != "") {
-        this.itemsCollection = this.afs.collection<Mensaje>("mensaje", ref => ref.orderBy('fecha', 'asc'));
+        this.itemsCollection = this.afs.collection<Mensaje>("mensaje", ref => ref.orderBy('fecha', 'desc'));
         return this.itemsCollection
           .valueChanges()
           .pipe(
