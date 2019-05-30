@@ -2,8 +2,10 @@ import { Solicitud } from "./Solicitud";
 import { ProductosInterface } from "./productos";
 
 export class Bolsita {
-  producto: ProductosInterface;
-  descripcion: number;
+  id?: string;
+  producto: string;
+  total: number;
+  usuario: string;
 
   constructor() {}
 }

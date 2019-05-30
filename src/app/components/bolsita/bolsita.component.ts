@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { BolsitaService } from "./../../services/servicioBolsita/bolsita.service";
 import { ApiService } from "./../../services/api.service";
 import { ProductosInterface } from "./../../models/productos";
+import { AngularFirestoreCollection } from "@angular/fire/firestore";
+import { Bolsita } from "../../models/Bolsita";
 
 @Component({
   selector: "app-bolsita",
@@ -10,7 +12,7 @@ import { ProductosInterface } from "./../../models/productos";
 })
 export class BolsitaComponent implements OnInit {
   constructor(private api: ApiService, private servicio: BolsitaService) {}
-
+  private bolsitaCollection: AngularFirestoreCollection<Bolsita>;
   bolsita: ProductosInterface[];
 
   ngOnInit() {

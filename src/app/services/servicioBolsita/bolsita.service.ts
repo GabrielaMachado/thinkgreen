@@ -3,29 +3,48 @@ import { ApiService } from "./../api.service";
 import { Observable } from "../../../../node_modules/rxjs";
 import { ProductosInterface } from "../../models/productos";
 import { Bolsita } from "../../models/Bolsita";
+import {
+  AngularFirestoreCollection,
+  AngularFirestore,
+  AngularFirestoreDocument
+} from "@angular/fire/firestore";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { UUID } from "angular2-uuid";
 
 @Injectable({
   providedIn: "root"
 })
 export class BolsitaService {
-  // bolsita: Observable<ProductosInterface[]>
-  public bolsita = [];
-  constructor() {}
+  private productosCollection: AngularFirestoreCollection<ProductosInterface>;
+  public bolsitaCollection: AngularFirestoreCollection<Bolsita>;
+
+  private bolsitaDoc: AngularFirestoreDocument<Bolsita>;
+
+  public bolsita = this.bolsitaCollection.doc("producto");
+  public usuario: any = {};
+  constructor(private afs: AngularFirestore, public afAuth: AngularFireAuth) {
+    this.bolsitaCollection = this.afs.collection<Bolsita>("bolsita");
+    this.afAuth.authState.subscribe(user => {
+      if (!user) {
+        return;
+      }
+      this.usuario.uid = user.uid;
+    });
+  }
 
   agregarBolsita(item) {
-    // Anyadimos el Nodo a nuestro carrito
-    // bolsita.push(this.getAttribute('marcador'))
-    // Calculo el total
-    // calcularTotal();
-    // Renderizamos el carrito
-    // renderizarCarrito();
-    this.bolsita.push(item);
-    console.log(item);
-    console.log(this.bolsita);
+    // var bolsitaUsuario = false;
+    let newBolsita: Bolsita = {
+      usuario: this.usuario.uid,
+      producto: item,
+      total: item.precio
+    };
+    console.log("New producto");
+    this.bolsitaCollection.add(newBolsita);
   }
 
   getContenido() {
-    return this.bolsita;
+    return this.bolsitaCollection;
   }
 
   calcularTotal() {
@@ -38,10 +57,20 @@ export class BolsitaService {
   }
 
   borrarItemCarrito(item) {
+    for (let producto of this.bolsita) {
+      if (producto.id == item.id) {
+      }
+    }
+    this.bolsitaDoc = this.afs.doc(`bolsita/${item.id}`);
+    this.bolsitaDoc.delete();
     let posicion = this.bolsita.indexOf(item);
     this.bolsita.splice(posicion, 1);
     this.calcularTotal();
   }
+
+  buscarbolsita(producto) {}
+
+  delateProductos(bolsita: Bolsita) {}
 
   actualizar() {
     let numero: number = 0;
@@ -50,127 +79,35 @@ export class BolsitaService {
   }
 }
 
-/*
-
-let baseDeDatos = [
-  {
-      id: 1,
-      nombre: 'Patata',
-      precio: 1
-  },
-  {
-      id: 2,
-      nombre: 'Cebolla',
-      precio: 1.2
-  },
-  {
-      id: 3,
-      nombre: 'Calabacin',
-      precio: 2.1
-  },
-  {
-      id: 4,
-      nombre: 'Fresas',
-      precio: 0.6
-  }
-
-]
-let $items = document.querySelector('#items');
-
-
-let total = 0;
-let $carrito = document.querySelector('#carrito');
-let $total = document.querySelector('#total');
-
-
-// Funciones
-function renderItems () {
-  for (let info of baseDeDatos) {
-      // Estructura
-      let miNodo = document.createElement('div');
-      miNodo.classList.add('card', 'col-sm-4');
-      // Body
-      let miNodoCardBody = document.createElement('div');
-      miNodoCardBody.classList.add('card-body');
-      // Titulo
-      let miNodoTitle = document.createElement('h5');
-      miNodoTitle.classList.add('card-title');
-      miNodoTitle.textContent = info['nombre'];
-      // Precio
-      let miNodoPrecio = document.createElement('p');
-      miNodoPrecio.classList.add('card-text');
-      miNodoPrecio.textContent = info['precio'] + '€';
-      // Boton 
-      let miNodoBoton = document.createElement('button');
-      miNodoBoton.classList.add('btn', 'btn-primary');
-      miNodoBoton.textContent = '+';
-      miNodoBoton.setAttribute('marcador', info['id']);
-      miNodoBoton.addEventListener('click', anyadirCarrito);
-      // Insertamos
-      miNodoCardBody.appendChild(miNodoTitle);
-      miNodoCardBody.appendChild(miNodoPrecio);
-      miNodoCardBody.appendChild(miNodoBoton);
-      miNodo.appendChild(miNodoCardBody);
-      $items.appendChild(miNodo);
-  }
-}
-
-*/
-
-/*
-function renderizarCarrito () {
-  // Vaciamos todo el html
-  $carrito.textContent = '';
-  // Generamos los Nodos a partir de carrito
-  carrito.forEach(function (item, indice) {
-      // Obtenemos el item que necesitamos de la variable base de datos
-      let miItem = baseDeDatos.filter(function(itemBaseDatos) {
-          return itemBaseDatos['id'] == item;
-      });
-      // Creamos el nodo del item del carrito
-      let miNodo = document.createElement('li');
-      miNodo.classList.add('list-group-item', 'text-right');
-      miNodo.textContent = `${miItem[0]['nombre']} - ${miItem[0]['precio']}€ `;
-      // Boton de borrar
-      let miBoton = document.createElement('button');
-      miBoton.classList.add('btn', 'btn-danger');
-      miBoton.textContent = 'X';
-      miBoton.setAttribute('posicion', indice);
-      miBoton.addEventListener('click', borrarItemCarrito);
-      // Mezclamos nodos
-      miNodo.appendChild(miBoton);
-      $carrito.appendChild(miNodo);
-  })
-}
-
-function borrarItemCarrito () {
-  // Obtenemos la posicion que hay en el boton pulsado
-  let posicion = this.getAttribute('posicion');
-  // Borramos la posicion que nos interesa
-  carrito.splice(posicion, 1);
-  // volvemos a renderizar
-  renderizarCarrito();
-  // Calculamos de nuevo el precio
-  calcularTotal();
-}
-
-function calcularTotal () {
-  // Limpiamos precio anterior
-  total = 0;
-  // Recorremos el array del carrito
-  for (let item of carrito) {
-      // De cada elemento obtenemos su precio
-      let miItem = baseDeDatos.filter(function(itemBaseDatos) {
-          return itemBaseDatos['id'] == item;
-      });
-      total = total + miItem[0]['precio'];
-  }
-  // Renderizamos el precio en el HTML
-  $total.textContent = total.toFixed(2);
-}
-// Eventos
-
-// Inicio
-renderItems();
-
-*/
+/*agregarBolsita(item) {
+  var bolsitaUsuario = false;
+  var idBolsita;
+  this.bolsitaCollection = this.afs.collection<Bolsita>("bolsita");
+  this.bolsitaCollection.valueChanges().subscribe((bolsitas: Bolsita[]) => {
+    for (let bolsita of bolsitas) {
+      if (bolsita.usuario == this.usuario.uid) {
+        bolsitaUsuario = true;
+        idBolsita = bolsita.id_bolsita;
+        let newBolsita: Bolsita = {
+          id_bolsita: idBolsita,
+          usuario: bolsita.usuario,
+          producto: item,
+          total: item.precio
+          
+          this.bolsitaCollection.add(newBolsita);
+        }
+      }
+      if (!bolsitaUsuario) {
+        let newBolsita: Bolsita = {
+          id_bolsita: UUID.UUID(),
+          usuario: this.usuario.uid,
+          producto: item,
+          total: item.precio
+        };
+        idBolsita = newBolsita.id_bolsita;
+        this.bolsitaCollection.add(newBolsita);
+      }
+      this.bolsita.push(item);
+      //this.bolsitaCollection.add(item);
+    });
+} */
