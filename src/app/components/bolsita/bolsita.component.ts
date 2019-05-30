@@ -14,9 +14,14 @@ export class BolsitaComponent implements OnInit {
   constructor(private api: ApiService, private servicio: BolsitaService) {}
   private bolsitaCollection: AngularFirestoreCollection<Bolsita>;
   bolsita: ProductosInterface[];
+  bolsita2: Bolsita[];
 
   ngOnInit() {
     this.bolsita = this.servicio.bolsita;
+
+    this.servicio.getContenido().subscribe(bolsitas => {
+      this.bolsita2 = bolsitas;
+    });
     // this.servicio.getContenido().push(bolsita => {
     //   this.bolsita = bolsita;
     // });
@@ -36,6 +41,6 @@ export class BolsitaComponent implements OnInit {
   }
 
   borrarItemCarrito(item) {
-    this.servicio.borrarItemCarrito(item);
+    this.servicio.borrarItemCarrito(item, this.bolsita2);
   }
 }

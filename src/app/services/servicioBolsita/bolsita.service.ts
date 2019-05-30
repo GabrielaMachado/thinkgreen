@@ -10,6 +10,8 @@ import {
 } from "@angular/fire/firestore";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { UUID } from "angular2-uuid";
+import { map } from "rxjs/operators";
+import { LineToLineMappedSource } from "webpack-sources";
 
 @Injectable({
   providedIn: "root"
@@ -20,7 +22,8 @@ export class BolsitaService {
 
   private bolsitaDoc: AngularFirestoreDocument<Bolsita>;
 
-  public bolsita = this.bolsitaCollection.doc("producto");
+  public bolsita = [];
+  public bolsita2: Observable<Bolsita[]>;
   public usuario: any = {};
   constructor(private afs: AngularFirestore, public afAuth: AngularFireAuth) {
     this.bolsitaCollection = this.afs.collection<Bolsita>("bolsita");
@@ -30,6 +33,33 @@ export class BolsitaService {
       }
       this.usuario.uid = user.uid;
     });
+    this.bolsita2 = this.bolsitaCollection.snapshotChanges().pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as Bolsita;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        })
+      )
+    );
+  }
+
+  llenarBolsita() {
+    this.bolsitaCollection = this.afs.collection<Bolsita>("bolsita");
+    this.bolsitaCollection
+      .valueChanges()
+      .pipe(
+        map((bolsitas: Bolsita[]) => {
+          //  console.log(bolsitas);
+          for (let bolsita of bolsitas) {
+            //   console.log(this.bolsita);
+            this.bolsita.push(bolsita.producto);
+          }
+        })
+      )
+      .subscribe(() => {
+        console.log("no se");
+      });
   }
 
   agregarBolsita(item) {
@@ -39,12 +69,13 @@ export class BolsitaService {
       producto: item,
       total: item.precio
     };
-    console.log("New producto");
     this.bolsitaCollection.add(newBolsita);
+    //this.llenarBolsita();
+    // console.log(this.bolsitaCollection);
   }
 
   getContenido() {
-    return this.bolsitaCollection;
+    return this.bolsita2;
   }
 
   calcularTotal() {
@@ -56,15 +87,17 @@ export class BolsitaService {
     return total;
   }
 
-  borrarItemCarrito(item) {
-    for (let producto of this.bolsita) {
-      if (producto.id == item.id) {
+  borrarItemCarrito(item, bolsita2) {
+    for (let bolsita of bolsita2) {
+      if (bolsita.producto.id == item.id) {
+        this.bolsitaDoc = this.afs.doc(`bolsita/${bolsita.id}`);
+        this.bolsitaDoc.delete();
+        //   console.log(producto.id);
       }
     }
-    this.bolsitaDoc = this.afs.doc(`bolsita/${item.id}`);
-    this.bolsitaDoc.delete();
-    let posicion = this.bolsita.indexOf(item);
-    this.bolsita.splice(posicion, 1);
+
+    //let posicion = this.bolsita.indexOf(item);
+    //this.bolsita.splice(posicion, 1);
     this.calcularTotal();
   }
 
